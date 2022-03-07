@@ -5,5 +5,5 @@ using UnityEngine.Events;
 public class TSG_GameEventResponses
 {
     public TSG_GameEvent GameEvent = null;
-    public UnityEvent Response = null;
+    public UnityEvent<TSG_GameEventData> Response = null;
 }
