@@ -23,4 +23,12 @@ public class TSG_GameEvent : ScriptableObject
             gameEventListeners[i]?.Invoke(this);
         }
     }
+
+    public void Invoke(TSG_GameEventData _gameEventData)
+    {
+        for (int i = 0; i < gameEventListeners.Count; i++)
+        {
+            gameEventListeners[i]?.Invoke(this, _gameEventData);
+        }
+    }
 }
