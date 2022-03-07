@@ -23,11 +23,16 @@ public class TSG_GameEventsListener : MonoBehaviour
 
     public void Invoke(TSG_GameEvent _gameEvent)
     {
+        Invoke(_gameEvent, default);
+    }
+
+    public void Invoke(TSG_GameEvent _gameEvent, TSG_GameEventData _gameEventData)
+    {
         for (int i = 0; i < gameEventResponses.Count; i++)
         {
             if (gameEventResponses[i].GameEvent == _gameEvent)
             {
-                gameEventResponses[i].Response?.Invoke();
+                gameEventResponses[i].Response?.Invoke(_gameEventData);
             }
         }
     }
