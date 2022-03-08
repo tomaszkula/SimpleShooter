@@ -52,6 +52,12 @@ namespace TSG.Game
 
 		private void Update()
 		{
+			controlWithNormalInputs();
+			controlWithTouchInputs();
+		}
+
+		private void controlWithNormalInputs()
+        {
 			if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 			{
 				MoveLeft();
@@ -61,11 +67,43 @@ namespace TSG.Game
 				MoveRight();
 			}
 
-			if (Input.GetKeyDown(KeyCode.Space))
+			if (Input.GetKey(KeyCode.Space))
 			{
 				Shoot();
 			}
 		}
+
+		private void controlWithTouchInputs()
+        {
+			if (Input.touchCount < 1)
+            {
+				return;
+            }
+
+			Touch _touch = Input.GetTouch(0);
+			Vector2 _touchedPosition = _touch.position;
+			Vector2 _normalizedTouchedPosition = normalize(_touchedPosition);
+
+			if (_normalizedTouchedPosition.x < 0.3f)
+			{
+				MoveLeft();
+			}
+			else if (_normalizedTouchedPosition.x > 0.7f)
+			{
+				MoveRight();
+			}
+
+			if (_normalizedTouchedPosition.x > 0.4f && _normalizedTouchedPosition.x < 0.6f)
+			{
+				Shoot();
+			}
+		}
+
+		private Vector2 normalize(Vector2 _position)
+        {
+			Vector2 _normalizedPosition = new Vector2(_position.x / Screen.width, _position.y / Screen.height);
+			return _normalizedPosition;
+        }
 
 		private void MoveLeft()
 		{
