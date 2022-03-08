@@ -1,24 +1,17 @@
-using System;
-using TSG.Model;
 using UnityEngine;
 
 namespace TSG.Game
 {
-	public class Player : MonoBehaviour
+    public class TSG_Player : MonoBehaviour
 	{
-		[Header("")]
+		[Header("Variables")]
+		[SerializeField] float moveSpeed = 0f;
+		[SerializeField] float bulletCooldown = 0f;
+
+		[Header("Objects Pools")]
 		[SerializeField] TSG_BulletObjectsPool bulletObjectsPool = null;
 
-		private PlayerModel model;
 		private float lastTimeShot;
-
-		public PlayerModel Model => model;
-
-        public void Setup(PlayerModel model, GameObject bulletPrefab)
-		{
-			this.model = model;
-			//this.bulletPrefab = bulletPrefab;
-		}
 
 		private void Update()
 		{
@@ -78,26 +71,26 @@ namespace TSG.Game
 		private void MoveLeft()
 		{
 			var pos = transform.position;
-			pos.x -= model.Speed * Time.deltaTime;
+			pos.x -= moveSpeed * Time.deltaTime;
 			transform.position = pos;
 		}
 
 		private void MoveRight()
 		{
 			var pos = transform.position;
-			pos.x += model.Speed * Time.deltaTime;
+			pos.x += moveSpeed * Time.deltaTime;
 			transform.position = pos;
 		}
 
 		private void Shoot()
 		{
-			if (lastTimeShot + model.BulletCooldown <= Time.timeSinceLevelLoad)
+			if (lastTimeShot + bulletCooldown <= Time.timeSinceLevelLoad)
 			{
 				Bullet _bullet = bulletObjectsPool.Get();
 				_bullet.transform.position = transform.position;
 				_bullet.transform.rotation = Quaternion.identity;
 				_bullet.Setup(gameObject);
-				//bullet.Setup(model.BulletSpeed, model.BulletDamage);
+
 				lastTimeShot = Time.timeSinceLevelLoad;
 			}
 		}

@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onLevelFail: {fileID: 11400000, guid: c11515b685b482049a071e3f987e8cdb, type: 2}
+  enemyObjectsPool: {fileID: 11400000, guid: 8299ab1b3c234154991c24c7cc521ab0, type: 2}
+  playerObjectsPool: {fileID: 11400000, guid: 28fe7472db24509429bfa833ae7b3cbe, type: 2}
   enemyConfig:
     Hitpoints: 2
     Speed: 2

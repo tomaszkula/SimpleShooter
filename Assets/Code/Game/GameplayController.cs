@@ -1,6 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using TSG.Model;
-using TSG.Popups;
+﻿using TSG.Model;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,10 +6,18 @@ namespace TSG.Game
 {
     public class GameplayController : MonoBehaviour
     {
+        [Header("Variables")]
+        bool isPlayerDead = false;
+        float lastTimeSpawnedEnemy = 0f;
+
         [Header("Events")]
         [SerializeField] TSG_GameEvent onLevelFail = null;
 
-        [Header("")]
+        [Header("Objects Pools")]
+        [SerializeField] TSG_EnemyObjectsPool enemyObjectsPool = null;
+        [SerializeField] TSG_PlayerObjectsPool playerObjectsPool = null;
+
+        [Header("Others")]
         [SerializeField] private EnemyConfig enemyConfig;
         [SerializeField] private PlayerConfig playerConfig;
         [SerializeField] private SpawnerConfig spawnerConfig;
@@ -20,9 +26,6 @@ namespace TSG.Game
         [SerializeField] private Transform playerSpawnPoint;
         [SerializeField] private Transform enemySpawnPoint;
 
-        private Player player;
-        private float lastTimeSpawnedEnemy;
-
         private void Start()
         {
             SpawnPlayer();
@@ -30,7 +33,7 @@ namespace TSG.Game
 
         private void Update()
         {
-            if (player.Model.IsDead())
+            if (isPlayerDead)
             {
                 return;
             }
@@ -44,30 +47,22 @@ namespace TSG.Game
 
         private void SpawnPlayer()
         {
-            var playerGo = Instantiate(playerPrefab, playerSpawnPoint.position, Quaternion.identity, transform);
-            player = playerGo.GetComponent<Player>();
-            player.Setup(new PlayerModel(playerConfig), bulletPrefab);
+            TSG_Player _player = playerObjectsPool.Get();
+            _player.transform.position = playerSpawnPoint.position;
+            _player.transform.rotation = playerSpawnPoint.rotation;
         }
         
         private void SpawnEnemy()
         {
-            var g = MonoBehaviour.Instantiate(spawnerConfig.Prefab, enemySpawnPoint.transform.position,
-                Quaternion.identity);
-            g.transform.position = enemySpawnPoint.transform.position +
-                                   new Vector3(
-                                       Random.Range(spawnerConfig.SpawnPosition.x, spawnerConfig.SpawnPosition.y),
-                                       0, 0);
-            var enemy = g.GetComponent<Enemy>();
-            enemy.Setup(new EnemyModel(enemyConfig));
-        }
-
-        private void HandlePlayerDeath(Player playerModel)
-        {
-            
+            TSG_Enemy _enemy = enemyObjectsPool.Get();
+            _enemy.transform.position = enemySpawnPoint.transform.position +
+                new Vector3(Random.Range(spawnerConfig.SpawnPosition.x, spawnerConfig.SpawnPosition.y), 0, 0);
+            _enemy.transform.rotation = Quaternion.identity;
         }
 
         public void OnPlayerDeath()
         {
+            isPlayerDead = true;
             onLevelFail?.Invoke();
         }
     }
