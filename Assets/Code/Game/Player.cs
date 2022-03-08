@@ -125,7 +125,8 @@ namespace TSG.Game
 			{
 				var bulletGo = Instantiate(bulletPrefab, transform.position, Quaternion.identity, null);
 				var bullet = bulletGo.GetComponent<Bullet>();
-				bullet.Setup(model.BulletSpeed, model.BulletDamage);
+				bullet.Setup(gameObject);
+				//bullet.Setup(model.BulletSpeed, model.BulletDamage);
 				lastTimeShot = Time.timeSinceLevelLoad;
 			}
 		}

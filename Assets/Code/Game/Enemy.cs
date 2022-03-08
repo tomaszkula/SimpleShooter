@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Events")]
-    [SerializeField] TSG_GameEvent onEnemyDeath = null;
-
     public event Action<Enemy, GameObject> onImpact = delegate { };
-    public event Action<Enemy> onDie = delegate { };
     
     private EnemyModel model;
     public EnemyModel Model => model;
@@ -16,17 +12,6 @@ public class Enemy : MonoBehaviour
     public void Setup(EnemyModel model)
     {
         this.model = model;
-        model.die += OnModelDie;
-    }
-
-    private void OnModelDie(EnemyModel obj)
-    {
-        onEnemyDeath?.Invoke(new TSG_GameEventData()
-        {
-            GameObjectValues = new GameObject[] { gameObject }
-        });
-
-        onDie(this);
     }
 
     private void Update()
@@ -34,11 +19,6 @@ public class Enemy : MonoBehaviour
         var pos = transform.position;
         pos.z -= model.Speed * Time.deltaTime;
         transform.position = pos;
-    }
-
-    public void TakeDamage(float damage)
-    {
-        model.TakeDamage(damage);
     }
     
     private void OnTriggerEnter(Collider other)

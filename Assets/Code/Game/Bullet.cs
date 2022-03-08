@@ -4,24 +4,50 @@ namespace TSG.Game
 {
 	public class Bullet : MonoBehaviour
 	{
-		private float damage;
-		private Rigidbody cachedRigidbody;
+		[Header("Variables")]
+		[SerializeField] TSG_DamageType damageType = null;
+		[SerializeField] float damage = 0f;
+		[SerializeField] float moveSpeed = 0f;
+
+		[Header("")]
+		GameObject attacker = null;
+
+		[Header("Components")]
+		Transform myTransform = null;
+		Rigidbody myRigidbody = null;
 
 		private void Awake()
 		{
-			cachedRigidbody = GetComponent<Rigidbody>();
+			myTransform = GetComponent<Transform>();
+			myRigidbody = GetComponent<Rigidbody>();
 		}
 
-		public void Setup(float speed, float damage)
-		{
-			cachedRigidbody.velocity = Vector3.forward * speed;
-			this.damage = damage;
+        private void OnTriggerEnter(Collider _other)
+        {
+			TSG_IDamageable _iDamageable = _other?.GetComponent<TSG_IDamageable>();
+			if(_iDamageable == null)
+            {
+				return;
+            }
+
+			bool _didDamage = _iDamageable.Damage(damageType, damage, gameObject, attacker, _other.ClosestPoint(myTransform.position));
+			if(_didDamage)
+            {
+				Destroy(gameObject);
+            }
 		}
 
-		public void GiveDamage(Enemy enemy)
+		public void Setup(GameObject _attacker)
 		{
-			enemy.TakeDamage(damage);
-			Destroy(gameObject);
+			attacker = _attacker;
+
+			myRigidbody.velocity = moveSpeed * Vector3.forward;
 		}
+
+		//      public void Setup(float speed, float damage)
+		//{
+		//	myRigidbody.velocity = Vector3.forward * speed;
+		//	this.damage = damage;
+		//}
 	}
 }

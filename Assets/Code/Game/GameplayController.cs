@@ -66,12 +66,6 @@ namespace TSG.Game
             var enemy = g.GetComponent<Enemy>();
             enemy.Setup(new EnemyModel(enemyConfig));
             enemy.onImpact += HandleEnemyImpact;
-            enemy.onDie += HandleEnemyDeath;
-        }
-
-        private void HandleEnemyDeath(Enemy obj)
-        {
-            Destroy(obj.gameObject);
         }
 
         private void HandleEnemyImpact(Enemy enemy, GameObject other)
@@ -82,7 +76,7 @@ namespace TSG.Game
             }
             else if (other.gameObject.TryGetComponent<Bullet>(out var bullet))
             {
-                bullet.GiveDamage(enemy);
+                //bullet.GiveDamage(enemy);
 
                 if (enemy.Model.IsDead())
                 {

@@ -26,20 +26,5 @@ namespace TSG.Model
         {
             return Hp == 0;
         }
-
-        public void TakeDamage(float damage)
-        {
-            if (IsDead())
-            {
-                return;
-            }
-            Hp = (int) Mathf.Max(0, Hp - damage);
-            damageTaken(this, damage);
-            if (!IsDead())
-            {
-                return;
-            }
-            die(this);
-        }
     }
 }
