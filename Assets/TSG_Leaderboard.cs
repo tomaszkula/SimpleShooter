@@ -49,10 +49,13 @@ namespace TSG.Game
         #region Save System
         private void load()
         {
-            List<LeaderboardEntryModel> _leaderboardEntries = TSG_LeaderboardUtility.CreateLeaderboardEntries(TSG_SaveSystem.SaveData.SaveableLeaderboardEntries);
-            for (int i = 0; i < _leaderboardEntries.Count && i < leaderboardEntries.Length; i++)
+            List<LeaderboardEntryModel> _leaderboardEntries = TSG_LeaderboardUtility.CreateLeaderboardEntries(TSG_SaveSystem.SaveData?.SaveableLeaderboardEntries);
+            if(_leaderboardEntries != null)
             {
-                leaderboardEntries[i] = _leaderboardEntries[i];
+                for (int i = 0; i < _leaderboardEntries.Count && i < leaderboardEntries.Length; i++)
+                {
+                    leaderboardEntries[i] = _leaderboardEntries[i];
+                }
             }
 
             refreshLeaderboardEntries();

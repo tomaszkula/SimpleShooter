@@ -16,6 +16,11 @@ public static class TSG_LeaderboardUtility
 
     public static List<LeaderboardEntryModel> CreateLeaderboardEntries(List<TSG_SaveableLeaderboardEntry> _saveableLeaderboardEntries)
     {
+        if (_saveableLeaderboardEntries == null)
+        {
+            return null;
+        }
+
         List<LeaderboardEntryModel> _leaderboardEntries = new List<LeaderboardEntryModel>();
         for (int i = 0; i < _saveableLeaderboardEntries.Count; i++)
         {
@@ -45,6 +50,11 @@ public static class TSG_LeaderboardUtility
 
     public static List<TSG_SaveableLeaderboardEntry> CreateSaveableLeaderboardEntries(List<LeaderboardEntryModel> _leaderboardEntries)
     {
+        if (_leaderboardEntries == null)
+        {
+            return null;
+        }
+
         List<TSG_SaveableLeaderboardEntry> _saveableLeaderboardEntries = new List<TSG_SaveableLeaderboardEntry>();
         for (int i = 0; i < _leaderboardEntries.Count; i++)
         {
