@@ -46,16 +46,6 @@ namespace TSG.Game
         }
         #endregion
 
-        public LeaderboardEntryModel GetHighscore(int _highscoreId)
-        {
-            if (_highscoreId < 0 || _highscoreId >= leaderboardEntries.Length)
-            {
-                return null;
-            }
-
-            return leaderboardEntries[_highscoreId];
-        }
-
         #region Save System
         private void load()
         {
