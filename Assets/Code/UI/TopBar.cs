@@ -1,38 +1,34 @@
-﻿using TMPro;
-using TSG.Model;
-using TSG.Popups;
-using UnityEngine;
-
-namespace TSG.Game
+﻿namespace TSG.Game
 {
-    public class TopBar : PopupStateModel<TopBar, PlayerModel>
+    using TMPro;
+    using UnityEngine;
+
+    public class TopBar : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI playerHealth;
-        [SerializeField] private TextMeshProUGUI score;
+        [Header("References")]
+        [SerializeField] TextMeshProUGUI healthTMP = null;
+        [SerializeField] TextMeshProUGUI scoreTMP = null;
 
-        public override void Setup(PlayerModel model)
+        public void OnScoreChange(TSG_GameEventData _gameEventData)
         {
-            base.Setup(model);
-            model.damageTaken += OnModelTakenDamage;
-            model.killedEnemy += OnModelKilledEnemy;
-
-            UpdateUI();
+            int _score = _gameEventData.IntValues[0];
+            updateScoreUI(_score);
         }
 
-        private void OnModelKilledEnemy(PlayerModel obj)
+        public void OnHealthChange(TSG_GameEventData _gameEventData)
         {
-            UpdateUI();
+            float _health = _gameEventData.FloatValues[0];
+            updateHealthUI(_health);
         }
 
-        private void OnModelTakenDamage(PlayerModel arg1, float arg2)
+        private void updateHealthUI(float _health)
         {
-            UpdateUI();
+            healthTMP.text = $"{_health}";
         }
 
-        private void UpdateUI()
+        private void updateScoreUI(int _score)
         {
-            playerHealth.text = model.HitPoints.ToString();
-            score.text = model.Score.ToString();
+            scoreTMP.text = $"{_score}";
         }
     }
 }

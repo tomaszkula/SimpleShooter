@@ -6,6 +6,9 @@ namespace TSG.Game
 {
 	public class Player : MonoBehaviour
 	{
+		[Header("Events")]
+		[SerializeField] TSG_GameEvent onHealthUpdate = null;
+
 		public event Action<Player> onDie = delegate { };
 
 		private PlayerModel model;
@@ -14,7 +17,12 @@ namespace TSG.Game
 
 		public PlayerModel Model => model;
 
-		public void Setup(PlayerModel model, GameObject bulletPrefab)
+        private void Start()
+        {
+			updateHealth();
+		}
+
+        public void Setup(PlayerModel model, GameObject bulletPrefab)
 		{
 			this.model = model;
 			this.bulletPrefab = bulletPrefab;
@@ -29,6 +37,15 @@ namespace TSG.Game
 		public void TakeDamage(float damage)
 		{
 			model.TakeDamage(damage);
+			updateHealth();
+		}
+
+		private void updateHealth()
+        {
+			onHealthUpdate?.Invoke(new TSG_GameEventData()
+			{
+				FloatValues = new float[] { model.HitPoints }
+			});
 		}
 
 		private void Update()

@@ -12,6 +12,7 @@ namespace TSG.Game
         [SerializeField] int maxHighscoresCount = 10;
 
         LeaderboardEntryModel[] highscores = new LeaderboardEntryModel[0];
+        int score = 0;
 
         public int MaxHighscoresCount => maxHighscoresCount;
 
@@ -20,14 +21,14 @@ namespace TSG.Game
             highscores = new LeaderboardEntryModel[maxHighscoresCount];
         }
 
-        public void Setup(PlayerModel _model)
+        public void OnScoreUpdate(TSG_GameEventData _gameEventData)
         {
-            _model.die += OnPlayerDeath;
+            score = _gameEventData.IntValues[0];
         }
 
-        public void OnPlayerDeath(PlayerModel _playerModel)
+        public void OnPlayerDeath()
         {
-            LeaderboardEntryModel _leaderboardEntryModel = new LeaderboardEntryModel("Test", _playerModel.Score);
+            LeaderboardEntryModel _leaderboardEntryModel = new LeaderboardEntryModel("Test", score);
             addHighscore(_leaderboardEntryModel);
         }
 

@@ -23,9 +23,9 @@ namespace TSG.Game
         {
             SpawnPlayer();
             
-            var topBar = Game.Get<PopupManager>().Get<TopBar>();
-            topBar.Setup(player.Model);
-            Game.Get<PopupManager>().Open<TopBar>().Forget();
+            //var topBar = Game.Get<PopupManager>().Get<TopBar>();
+            //topBar.Setup(player.Model);
+            //Game.Get<PopupManager>().Open<TopBar>().Forget();
         }
 
         private void Update()

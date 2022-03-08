@@ -14,7 +14,6 @@ namespace TSG.Model
 		public float BulletDamage { get; }
 		public float BulletSpeed { get;}
 		public float BulletCooldown { get; }
-		public int Score { get; private set; }
 		public int HitPoints { get; private set; }
 		
 		public PlayerModel(PlayerConfig config)
@@ -51,7 +50,6 @@ namespace TSG.Model
 
 		public void KillEnemy()
 		{
-			Score += 1;
 			killedEnemy(this);
 		}
 	}

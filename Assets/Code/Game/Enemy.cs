@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Events")]
+    [SerializeField] TSG_GameEvent onEnemyDeath = null;
+
     public event Action<Enemy, GameObject> onImpact = delegate { };
     public event Action<Enemy> onDie = delegate { };
     
@@ -18,6 +21,11 @@ public class Enemy : MonoBehaviour
 
     private void OnModelDie(EnemyModel obj)
     {
+        onEnemyDeath?.Invoke(new TSG_GameEventData()
+        {
+            GameObjectValues = new GameObject[] { gameObject }
+        });
+
         onDie(this);
     }
 
