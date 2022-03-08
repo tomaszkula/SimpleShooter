@@ -10,10 +10,12 @@ namespace TSG.Game
 		[SerializeField] TSG_GameEvent onHealthUpdate = null;
 		[SerializeField] TSG_GameEvent onPlayerDeath = null;
 
+		[Header("")]
+		[SerializeField] TSG_BulletObjectsPool bulletObjectsPool = null;
+
 		public event Action<Player> onDie = delegate { };
 
 		private PlayerModel model;
-		private GameObject bulletPrefab;
 		private float lastTimeShot;
 
 		public PlayerModel Model => model;
@@ -26,7 +28,7 @@ namespace TSG.Game
         public void Setup(PlayerModel model, GameObject bulletPrefab)
 		{
 			this.model = model;
-			this.bulletPrefab = bulletPrefab;
+			//this.bulletPrefab = bulletPrefab;
 			model.die += OnModelDie;
 		}
 
@@ -123,9 +125,10 @@ namespace TSG.Game
 		{
 			if (lastTimeShot + model.BulletCooldown <= Time.timeSinceLevelLoad)
 			{
-				var bulletGo = Instantiate(bulletPrefab, transform.position, Quaternion.identity, null);
-				var bullet = bulletGo.GetComponent<Bullet>();
-				bullet.Setup(gameObject);
+				Bullet _bullet = bulletObjectsPool.Get();
+				_bullet.transform.position = transform.position;
+				_bullet.transform.rotation = Quaternion.identity;
+				_bullet.Setup(gameObject);
 				//bullet.Setup(model.BulletSpeed, model.BulletDamage);
 				lastTimeShot = Time.timeSinceLevelLoad;
 			}
