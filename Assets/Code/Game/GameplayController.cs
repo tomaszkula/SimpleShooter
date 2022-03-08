@@ -26,10 +26,6 @@ namespace TSG.Game
         private void Start()
         {
             SpawnPlayer();
-            
-            //var topBar = Game.Get<PopupManager>().Get<TopBar>();
-            //topBar.Setup(player.Model);
-            //Game.Get<PopupManager>().Open<TopBar>().Forget();
         }
 
         private void Update()
@@ -51,8 +47,6 @@ namespace TSG.Game
             var playerGo = Instantiate(playerPrefab, playerSpawnPoint.position, Quaternion.identity, transform);
             player = playerGo.GetComponent<Player>();
             player.Setup(new PlayerModel(playerConfig), bulletPrefab);
-
-            player.onDie += HandlePlayerDeath;
         }
         
         private void SpawnEnemy()
@@ -65,33 +59,16 @@ namespace TSG.Game
                                        0, 0);
             var enemy = g.GetComponent<Enemy>();
             enemy.Setup(new EnemyModel(enemyConfig));
-            enemy.onImpact += HandleEnemyImpact;
-        }
-
-        private void HandleEnemyImpact(Enemy enemy, GameObject other)
-        {
-            if (other.gameObject.TryGetComponent<Player>(out var playerComponent))
-            {
-                playerComponent.TakeDamage(enemy.Model.Damage);
-            }
-            else if (other.gameObject.TryGetComponent<Bullet>(out var bullet))
-            {
-                //bullet.GiveDamage(enemy);
-
-                if (enemy.Model.IsDead())
-                {
-                    player.Model.KillEnemy();
-                }
-            }
         }
 
         private void HandlePlayerDeath(Player playerModel)
         {
-            onLevelFail?.Invoke();
+            
+        }
 
-            //var endPopup = Game.Get<PopupManager>().Get<EndPopup>();
-            //endPopup.Setup(player.Model);
-            //Game.Get<PopupManager>().Open<EndPopup>().Forget();
+        public void OnPlayerDeath()
+        {
+            onLevelFail?.Invoke();
         }
     }
 }

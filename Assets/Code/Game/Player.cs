@@ -6,50 +6,18 @@ namespace TSG.Game
 {
 	public class Player : MonoBehaviour
 	{
-		[Header("Events")]
-		[SerializeField] TSG_GameEvent onHealthUpdate = null;
-		[SerializeField] TSG_GameEvent onPlayerDeath = null;
-
 		[Header("")]
 		[SerializeField] TSG_BulletObjectsPool bulletObjectsPool = null;
-
-		public event Action<Player> onDie = delegate { };
 
 		private PlayerModel model;
 		private float lastTimeShot;
 
 		public PlayerModel Model => model;
 
-        private void Start()
-        {
-			updateHealth();
-		}
-
         public void Setup(PlayerModel model, GameObject bulletPrefab)
 		{
 			this.model = model;
 			//this.bulletPrefab = bulletPrefab;
-			model.die += OnModelDie;
-		}
-
-		private void OnModelDie(PlayerModel obj)
-		{
-			onPlayerDeath?.Invoke();
-			onDie(this);
-		}
-
-		public void TakeDamage(float damage)
-		{
-			model.TakeDamage(damage);
-			updateHealth();
-		}
-
-		private void updateHealth()
-        {
-			onHealthUpdate?.Invoke(new TSG_GameEventData()
-			{
-				FloatValues = new float[] { model.HitPoints }
-			});
 		}
 
 		private void Update()

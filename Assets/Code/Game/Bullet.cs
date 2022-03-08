@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TSG.Game
 {
-	public class Bullet : MonoBehaviour
+    public class Bullet : MonoBehaviour
 	{
 		[Header("Variables")]
 		[SerializeField] TSG_DamageType damageType = null;
@@ -43,11 +43,5 @@ namespace TSG.Game
 
 			myRigidbody.velocity = moveSpeed * Vector3.forward;
 		}
-
-		//      public void Setup(float speed, float damage)
-		//{
-		//	myRigidbody.velocity = Vector3.forward * speed;
-		//	this.damage = damage;
-		//}
 	}
 }
