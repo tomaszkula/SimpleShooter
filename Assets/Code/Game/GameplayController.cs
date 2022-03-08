@@ -8,6 +8,10 @@ namespace TSG.Game
 {
     public class GameplayController : MonoBehaviour
     {
+        [Header("Events")]
+        [SerializeField] TSG_GameEvent onLevelFail = null;
+
+        [Header("")]
         [SerializeField] private EnemyConfig enemyConfig;
         [SerializeField] private PlayerConfig playerConfig;
         [SerializeField] private SpawnerConfig spawnerConfig;
@@ -89,9 +93,11 @@ namespace TSG.Game
 
         private void HandlePlayerDeath(Player playerModel)
         {
-            var endPopup = Game.Get<PopupManager>().Get<EndPopup>();
-            endPopup.Setup(player.Model);
-            Game.Get<PopupManager>().Open<EndPopup>().Forget();
+            onLevelFail?.Invoke();
+
+            //var endPopup = Game.Get<PopupManager>().Get<EndPopup>();
+            //endPopup.Setup(player.Model);
+            //Game.Get<PopupManager>().Open<EndPopup>().Forget();
         }
     }
 }

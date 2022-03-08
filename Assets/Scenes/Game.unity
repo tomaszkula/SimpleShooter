@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b102bd88bc342d4c9d3ed385fc56e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onLevelFail: {fileID: 11400000, guid: c11515b685b482049a071e3f987e8cdb, type: 2}
   enemyConfig:
     Hitpoints: 2
     Speed: 2
@@ -277,12 +278,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2394524790978204500, guid: b4242e394fbf7b4419cc0161ebb1fb21, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2394524790978204500, guid: b4242e394fbf7b4419cc0161ebb1fb21, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2414403598148227893, guid: b4242e394fbf7b4419cc0161ebb1fb21, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2414403598148227893, guid: b4242e394fbf7b4419cc0161ebb1fb21, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017816131570641006, guid: b4242e394fbf7b4419cc0161ebb1fb21, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017816131570641006, guid: b4242e394fbf7b4419cc0161ebb1fb21, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5718004763207675525, guid: b4242e394fbf7b4419cc0161ebb1fb21, type: 3}
@@ -315,6 +332,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6092710075652078088, guid: b4242e394fbf7b4419cc0161ebb1fb21, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142893448500077230, guid: b4242e394fbf7b4419cc0161ebb1fb21, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142893448500077230, guid: b4242e394fbf7b4419cc0161ebb1fb21, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142893448500077230, guid: b4242e394fbf7b4419cc0161ebb1fb21, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142893448500077230, guid: b4242e394fbf7b4419cc0161ebb1fb21, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6797694618543219672, guid: b4242e394fbf7b4419cc0161ebb1fb21, type: 3}
