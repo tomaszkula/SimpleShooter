@@ -41,7 +41,7 @@ namespace TSG.Game
 		{
 			attacker = _attacker;
 
-			myRigidbody.velocity = moveSpeed * Vector3.forward;
+			myRigidbody.velocity = moveSpeed * myTransform.forward;
 		}
 	}
 }

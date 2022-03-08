@@ -1,4 +1,5 @@
-﻿using TSG.Model;
+﻿using System.Collections.Generic;
+using TSG.Model;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,7 +15,7 @@ namespace TSG.Game
         [SerializeField] TSG_GameEvent onLevelFail = null;
 
         [Header("Objects Pools")]
-        [SerializeField] TSG_EnemyObjectsPool enemyObjectsPool = null;
+        [SerializeField] List<TSG_EnemyObjectsPool> enemyObjectsPools = new List<TSG_EnemyObjectsPool>();
         [SerializeField] TSG_PlayerObjectsPool playerObjectsPool = null;
 
         [Header("Others")]
@@ -28,7 +29,7 @@ namespace TSG.Game
 
         private void Start()
         {
-            SpawnPlayer();
+            spawnPlayer();
         }
 
         private void Update()
@@ -41,29 +42,41 @@ namespace TSG.Game
             if (lastTimeSpawnedEnemy + spawnerConfig.SpawnDelay <= Time.timeSinceLevelLoad)
             {
                 lastTimeSpawnedEnemy = Time.timeSinceLevelLoad;
-                SpawnEnemy();
+                spawnEnemy();
             }
-        }
-
-        private void SpawnPlayer()
-        {
-            TSG_Player _player = playerObjectsPool.Get();
-            _player.transform.position = playerSpawnPoint.position;
-            _player.transform.rotation = playerSpawnPoint.rotation;
-        }
-        
-        private void SpawnEnemy()
-        {
-            TSG_Enemy _enemy = enemyObjectsPool.Get();
-            _enemy.transform.position = enemySpawnPoint.transform.position +
-                new Vector3(Random.Range(spawnerConfig.SpawnPosition.x, spawnerConfig.SpawnPosition.y), 0, 0);
-            _enemy.transform.rotation = Quaternion.identity;
         }
 
         public void OnPlayerDeath()
         {
             isPlayerDead = true;
             onLevelFail?.Invoke();
+        }
+
+        private void spawnPlayer()
+        {
+            TSG_Player _player = playerObjectsPool.Get();
+            _player.transform.position = playerSpawnPoint.position;
+            _player.transform.forward = playerSpawnPoint.forward;
+        }
+        
+        private void spawnEnemy()
+        {
+            TSG_EnemyObjectsPool _randomEnemyObjectsPool = getRandomEnemyObjectsPool();
+            TSG_Enemy _enemy = _randomEnemyObjectsPool.Get();
+            _enemy.transform.position = enemySpawnPoint.transform.position +
+                new Vector3(Random.Range(spawnerConfig.SpawnPosition.x, spawnerConfig.SpawnPosition.y), 0, 0);
+            _enemy.transform.forward = enemySpawnPoint.forward;
+        }
+
+        private TSG_EnemyObjectsPool getRandomEnemyObjectsPool()
+        {
+            if(enemyObjectsPools.Count < 1)
+            {
+                return null;
+            }
+
+            int _enemyOnjectsPoolsId = Random.Range(0, enemyObjectsPools.Count);
+            return enemyObjectsPools[_enemyOnjectsPoolsId];
         }
     }
 }

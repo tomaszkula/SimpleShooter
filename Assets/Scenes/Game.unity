@@ -154,7 +154,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onLevelFail: {fileID: 11400000, guid: c11515b685b482049a071e3f987e8cdb, type: 2}
-  enemyObjectsPool: {fileID: 11400000, guid: 8299ab1b3c234154991c24c7cc521ab0, type: 2}
+  enemyObjectsPools:
+  - {fileID: 11400000, guid: 8299ab1b3c234154991c24c7cc521ab0, type: 2}
+  - {fileID: 11400000, guid: 8e1e03536ab270d46b43c485fc62f264, type: 2}
   playerObjectsPool: {fileID: 11400000, guid: 28fe7472db24509429bfa833ae7b3cbe, type: 2}
   enemyConfig:
     Hitpoints: 2
@@ -1020,13 +1022,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048468735}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 20.02}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 15322660}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &2084569446
 GameObject:
   m_ObjectHideFlags: 0
