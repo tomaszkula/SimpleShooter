@@ -59,6 +59,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEventResponses:
+  - GameEvent: {fileID: 11400000, guid: d3696db69a8033246b9a0ef58aee3fb6, type: 2}
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3137033744993037699}
+          m_TargetAssemblyTypeName: TSG.Game.TSG_Leaderboard, Assembly-CSharp
+          m_MethodName: OnSaveLoad
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - GameEvent: {fileID: 11400000, guid: f5a7df065e7a18648a0ac3298db2a570, type: 2}
     Response:
       m_PersistentCalls:
