@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onHealthUpdate: {fileID: 11400000, guid: aaf476c68622fcd4ebb93cb7ce94ff74, type: 2}
+  onPlayerDeath: {fileID: 11400000, guid: 1058d489fad64d842ab053310fb96ad4, type: 2}
 --- !u!54 &-5090054725902195139
 Rigidbody:
   m_ObjectHideFlags: 0

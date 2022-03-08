@@ -5,42 +5,38 @@ namespace TSG.Game
 
     public class TSG_LeaderboardUI : MonoBehaviour
     {
-        [Header("")]
-        [SerializeField] TSG_LeaderboardEntryUI leaderEntryUIPrefab = null;
+        [Header("Variables")]
+        [SerializeField] int maxHighscoresDataToDisplayCount = 10;
 
-        TSG_LeaderboardEntryUI[] leaderboardEntryUIs = new TSG_LeaderboardEntryUI[0];
+        [Header("XD")]
+        [SerializeField] TSG_LeaderboardEntryUI highscoreUIPrefab = null;
+
+        TSG_LeaderboardEntryUI[] highscoreDataUIs = new TSG_LeaderboardEntryUI[0];
 
         [Header("References")]
-        [SerializeField] RectTransform container = null;
+        [SerializeField] RectTransform highscoresContainer = null;
 
-        TSG_Leaderboard leaderboard = null;
-
-        public void Setup(TSG_Leaderboard _leaderboard)
+        private void Awake()
         {
-            leaderboard = _leaderboard;
-
-            leaderboard.onHighscoreUpdate += UpdateHightscore;
-
-            leaderboardEntryUIs = new TSG_LeaderboardEntryUI[leaderboard.MaxHighscoresCount];
-            for (int i = 0; i < leaderboardEntryUIs.Length; i++)
-            {
-                UpdateHightscore(i, leaderboard.GetHighscore(i));
-            }
+            highscoreDataUIs = new TSG_LeaderboardEntryUI[maxHighscoresDataToDisplayCount];
         }
 
-        public void UpdateHightscore(int _highscoreId, LeaderboardEntryModel _highscore)
+        public void OnHighscoreDataUpdate(TSG_GameEventData _gameEventData)
         {
-            if(_highscoreId < 0 && _highscoreId >= leaderboardEntryUIs.Length)
+            int _highscoreId = _gameEventData.IntValues[0];
+            LeaderboardEntryModel _highscoreData = _gameEventData.ObjectValues[0] as LeaderboardEntryModel;
+
+            if (_highscoreId < 0 && _highscoreId >= highscoreDataUIs.Length)
             {
                 return;
             }
 
-            if (leaderboardEntryUIs[_highscoreId] == null)
+            if (highscoreDataUIs[_highscoreId] == null)
             {
-                leaderboardEntryUIs[_highscoreId] = Instantiate(leaderEntryUIPrefab, container);
+                highscoreDataUIs[_highscoreId] = Instantiate(highscoreUIPrefab, highscoresContainer);
             }
 
-            leaderboardEntryUIs[_highscoreId].Setup(_highscoreId, _highscore);
+            highscoreDataUIs[_highscoreId].Setup(_highscoreId, _highscoreData);
         }
     }
 }

@@ -1,24 +1,32 @@
 namespace TSG.Game
 {
-    using System;
     using TSG.Model;
     using UnityEngine;
 
     public class TSG_Leaderboard : MonoBehaviour
     {
-        public event Action<int, LeaderboardEntryModel> onHighscoreUpdate = null;
-
         [Header("Variables")]
-        [SerializeField] int maxHighscoresCount = 10;
+        [SerializeField] int maxHighscoresDataCount = 10;
 
-        LeaderboardEntryModel[] highscores = new LeaderboardEntryModel[0];
+        LeaderboardEntryModel[] highscoresData = new LeaderboardEntryModel[0];
         int score = 0;
 
-        public int MaxHighscoresCount => maxHighscoresCount;
+        public int MaxHighscoresDataCount => maxHighscoresDataCount;
+
+        [Header("Events")]
+        [SerializeField] TSG_GameEvent onHighscoreDataUpdate = null;
 
         private void Awake()
         {
-            highscores = new LeaderboardEntryModel[maxHighscoresCount];
+            highscoresData = new LeaderboardEntryModel[maxHighscoresDataCount];
+        }
+
+        private void Start()
+        {
+            for (int i = 0; i < highscoresData.Length; i++)
+            {
+                updateHighscoreData(i, highscoresData[i]);
+            }
         }
 
         public void OnScoreUpdate(TSG_GameEventData _gameEventData)
@@ -28,33 +36,35 @@ namespace TSG.Game
 
         public void OnPlayerDeath()
         {
-            LeaderboardEntryModel _leaderboardEntryModel = new LeaderboardEntryModel("Test", score);
-            addHighscore(_leaderboardEntryModel);
+            LeaderboardEntryModel _highscoreData = new LeaderboardEntryModel("Test", score);
+            addHighscore(_highscoreData);
         }
 
         public LeaderboardEntryModel GetHighscore(int _highscoreId)
         {
-            if (_highscoreId < 0 || _highscoreId >= highscores.Length)
+            if (_highscoreId < 0 || _highscoreId >= highscoresData.Length)
             {
                 return null;
             }
 
-            return highscores[_highscoreId];
+            return highscoresData[_highscoreId];
         }
 
-        private bool addHighscore(LeaderboardEntryModel _leaderboardEntryModel)
+        private bool addHighscore(LeaderboardEntryModel _highscoreData)
         {
-            for (int i = 0; i < highscores.Length; i++)
+            for (int i = 0; i < highscoresData.Length; i++)
             {
-                if (highscores[i] == null)
+                if (highscoresData[i] == null)
                 {
-                    updateHighscorePosition(i, _leaderboardEntryModel);
+                    highscoresData[i] = _highscoreData;
+                    updateHighscoreData(i, _highscoreData);
                     return true;
                 }
-                else if (highscores[i].Score < _leaderboardEntryModel.Score)
+                else if (highscoresData[i].Score < _highscoreData.Score)
                 {
                     lowerHighscoresFrom(i);
-                    updateHighscorePosition(i, _leaderboardEntryModel);
+                    highscoresData[i] = _highscoreData;
+                    updateHighscoreData(i, _highscoreData);
                     return true;
                 }
             }
@@ -62,23 +72,27 @@ namespace TSG.Game
             return false;
         }
 
-        private void lowerHighscoresFrom(int _highscoreId)
+        private void lowerHighscoresFrom(int _highscoreDataId)
         {
-            if (_highscoreId < 0 || _highscoreId >= highscores.Length)
+            if (_highscoreDataId < 0 || _highscoreDataId >= highscoresData.Length)
             {
                 return;
             }
 
-            for (int i = highscores.Length - 1; i > _highscoreId; i--)
+            for (int i = highscoresData.Length - 1; i > _highscoreDataId; i--)
             {
-                updateHighscorePosition(i, highscores[i - 1]);
+                highscoresData[i] = highscoresData[i - 1];
+                updateHighscoreData(i, highscoresData[i - 1]);
             }
         }
 
-        private void updateHighscorePosition(int _highscoreId, LeaderboardEntryModel _highscore)
+        private void updateHighscoreData(int _highscoreDataId, LeaderboardEntryModel _highscoreData)
         {
-            highscores[_highscoreId] = _highscore;
-            onHighscoreUpdate?.Invoke(_highscoreId, _highscore);
+            onHighscoreDataUpdate?.Invoke(new TSG_GameEventData()
+            {
+                IntValues = new int[] { _highscoreDataId },
+                ObjectValues = new object[] { _highscoreData }
+            });
         }
     }
 }

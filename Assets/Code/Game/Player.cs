@@ -8,6 +8,7 @@ namespace TSG.Game
 	{
 		[Header("Events")]
 		[SerializeField] TSG_GameEvent onHealthUpdate = null;
+		[SerializeField] TSG_GameEvent onPlayerDeath = null;
 
 		public event Action<Player> onDie = delegate { };
 
@@ -31,6 +32,7 @@ namespace TSG.Game
 
 		private void OnModelDie(PlayerModel obj)
 		{
+			onPlayerDeath?.Invoke();
 			onDie(this);
 		}
 
