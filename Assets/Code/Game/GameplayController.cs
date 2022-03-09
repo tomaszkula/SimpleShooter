@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using TSG.Model;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace TSG.Game
@@ -8,25 +6,21 @@ namespace TSG.Game
     public class GameplayController : MonoBehaviour
     {
         [Header("Variables")]
+        [SerializeField] TSG_SpawnerConfig spawnerConfig = null;
+
         bool isPlayerDead = false;
         float lastTimeSpawnedEnemy = 0f;
+
+        [Header("References")]
+        [SerializeField] Transform playerSpawnPoint = null;
+        [SerializeField] Transform enemySpawnPoint = null;
 
         [Header("Events")]
         [SerializeField] TSG_GameEvent onLevelFail = null;
 
         [Header("Objects Pools")]
-        [SerializeField] List<TSG_EnemyObjectsPool> enemyObjectsPools = new List<TSG_EnemyObjectsPool>();
         [SerializeField] TSG_PlayerObjectsPool playerObjectsPool = null;
-
-        [Header("Others")]
-        [SerializeField] private EnemyConfig enemyConfig;
-        [SerializeField] private PlayerConfig playerConfig;
-        [SerializeField] private SpawnerConfig spawnerConfig;
-        [SerializeField] private GameObject playerPrefab;
-        [SerializeField] private GameObject bulletPrefab;
-        [SerializeField] private Transform playerSpawnPoint;
-        [SerializeField] private Transform enemySpawnPoint;
-
+        
         private void Start()
         {
             spawnPlayer();
@@ -61,22 +55,11 @@ namespace TSG.Game
         
         private void spawnEnemy()
         {
-            TSG_EnemyObjectsPool _randomEnemyObjectsPool = getRandomEnemyObjectsPool();
+            TSG_EnemyObjectsPool _randomEnemyObjectsPool = spawnerConfig.GetRandomEnemyObjectsPool();
             TSG_Enemy _enemy = _randomEnemyObjectsPool.Get();
             _enemy.transform.position = enemySpawnPoint.transform.position +
-                new Vector3(Random.Range(spawnerConfig.SpawnPosition.x, spawnerConfig.SpawnPosition.y), 0, 0);
+                new Vector3(Random.Range(spawnerConfig.XSpawnPositionRange.x, spawnerConfig.XSpawnPositionRange.y), 0, 0);
             _enemy.transform.forward = enemySpawnPoint.forward;
-        }
-
-        private TSG_EnemyObjectsPool getRandomEnemyObjectsPool()
-        {
-            if(enemyObjectsPools.Count < 1)
-            {
-                return null;
-            }
-
-            int _enemyOnjectsPoolsId = Random.Range(0, enemyObjectsPools.Count);
-            return enemyObjectsPools[_enemyOnjectsPoolsId];
         }
     }
 }

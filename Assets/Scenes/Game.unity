@@ -153,30 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b102bd88bc342d4c9d3ed385fc56e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onLevelFail: {fileID: 11400000, guid: c11515b685b482049a071e3f987e8cdb, type: 2}
-  enemyObjectsPools:
-  - {fileID: 11400000, guid: 8299ab1b3c234154991c24c7cc521ab0, type: 2}
-  - {fileID: 11400000, guid: 8e1e03536ab270d46b43c485fc62f264, type: 2}
-  - {fileID: 11400000, guid: 61855ba205a92c0468b49c5e53f63795, type: 2}
-  playerObjectsPool: {fileID: 11400000, guid: 28fe7472db24509429bfa833ae7b3cbe, type: 2}
-  enemyConfig:
-    Hitpoints: 2
-    Speed: 2
-    Damage: 1
-  playerConfig:
-    Hitpoints: 2
-    Speed: 2
-    BulletDamage: 1
-    BulletSpeed: 10
-    BulletCooldown: 0.5
-  spawnerConfig:
-    Prefab: {fileID: 7295090005558544154, guid: 10fbab8caa97ad64cb9b08066108c5f2, type: 3}
-    SpawnDelay: 2
-    SpawnPosition: {x: -5, y: 5, z: 0}
-  playerPrefab: {fileID: 5331286619832824820, guid: 4cc1da050a3da8146888027bb658f3bb, type: 3}
-  bulletPrefab: {fileID: 274776011232356594, guid: 7285952f907a4994b8dd530d4610334e, type: 3}
+  spawnerConfig: {fileID: 11400000, guid: b2e748d45a7dc04499d786a97811e22a, type: 2}
   playerSpawnPoint: {fileID: 2084569447}
   enemySpawnPoint: {fileID: 2048468736}
+  onLevelFail: {fileID: 11400000, guid: c11515b685b482049a071e3f987e8cdb, type: 2}
+  playerObjectsPool: {fileID: 11400000, guid: 28fe7472db24509429bfa833ae7b3cbe, type: 2}
 --- !u!4 &15322660
 Transform:
   m_ObjectHideFlags: 0
