@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a0d008571d2c047ba950bc9db5b485, type: 3}
-  m_Name: bulletObjectsPool_Enemy
+  m_Script: {fileID: 11500000, guid: 3d07f3fa5ecb1f24c828fcd06a60d33c, type: 3}
+  m_Name: shooterConfig_DefaultPlayer
   m_EditorClassIdentifier: 
-  prefab: {fileID: 274776011232356599, guid: c40090bd186d2ba499296749718011e5, type: 3}
-  countToSpawnOnInit: 10
+  BulletObjectsPool: {fileID: 11400000, guid: a0c76340d733bbd4b8a52f273f3d0065, type: 2}
+  Cooldown:
+    Min: 0.5
+    Max: 0.5

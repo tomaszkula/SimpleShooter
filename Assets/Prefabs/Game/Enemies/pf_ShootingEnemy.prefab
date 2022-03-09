@@ -215,8 +215,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f5c66359ecda84eb95e4bb5314219e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotCooldown:
-    Min: 1
-    Max: 5
+  shooterConfig: {fileID: 11400000, guid: 4c34c5e5a69be3d4dbee22754a967881, type: 2}
   bulletsSpawner: {fileID: 298609028125888779}
-  bulletObjectsPool: {fileID: 11400000, guid: ce09449d5f6e23b4a8b600cece5ef0f4, type: 2}

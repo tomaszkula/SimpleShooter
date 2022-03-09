@@ -3,16 +3,13 @@ using UnityEngine;
 
 public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
 {
-    [Header("Variables")]
-    [SerializeField] float shootCooldown = 0f;
+	[Header("Variables")]
+	[SerializeField] TSG_ShooterConfig shooterConfig = null;
 
     float shootDelay = 0f;
 
 	[Header("References")]
 	[SerializeField] Transform bulletsSpawner = null;
-
-	[Header("Objects Pools")]
-    [SerializeField] TSG_BulletObjectsPool bulletObjectsPool = null;
 
     public void Shoot()
     {
@@ -57,9 +54,9 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
 			return;
         }
 
-		shootDelay = shootCooldown;
+		shootDelay = shooterConfig.Cooldown.Random;
 
-		TSG_Bullet _bullet = bulletObjectsPool.Get();
+		TSG_Bullet _bullet = shooterConfig.BulletObjectsPool.Get();
 		_bullet.transform.position = bulletsSpawner.position;
 		_bullet.transform.forward = bulletsSpawner.forward;
 		_bullet.Setup(gameObject);
