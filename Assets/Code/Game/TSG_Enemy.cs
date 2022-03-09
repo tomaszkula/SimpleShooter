@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class TSG_Enemy : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 0f;
+    TSG_IMoveable iMoveable = null;
+
+    private void Awake()
+    {
+        iMoveable = GetComponent<TSG_IMoveable>();
+    }
 
     private void Update()
     {
-        var pos = transform.position;
-        pos.z -= moveSpeed * Time.deltaTime;
-        transform.position = pos;
+        iMoveable?.Move();
     }
 }

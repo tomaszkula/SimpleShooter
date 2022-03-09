@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 4433997763067039962}
   - component: {fileID: 5031227297016360156}
   - component: {fileID: 3677791630363003223}
+  - component: {fileID: 5161838460093148953}
   m_Layer: 7
   m_Name: pf_ShootingEnemy
   m_TagString: Untagged
@@ -160,7 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7f3447db87421fa2406f50d3249cec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
 --- !u!114 &4433997763067039962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,3 +207,16 @@ MonoBehaviour:
     Max: 5
   bulletsSpawner: {fileID: 298609028125888779}
   bulletObjectsPool: {fileID: 11400000, guid: ce09449d5f6e23b4a8b600cece5ef0f4, type: 2}
+--- !u!114 &5161838460093148953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295090005558544154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc6cd1586547304794e1c9622af4c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2

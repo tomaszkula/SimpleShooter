@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8228125758421055967}
   - component: {fileID: 4433997763067039962}
   - component: {fileID: 5031227297016360156}
+  - component: {fileID: 5162759227206459694}
   m_Layer: 7
   m_Name: pf_Enemy
   m_TagString: Untagged
@@ -128,7 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7f3447db87421fa2406f50d3249cec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
 --- !u!114 &4433997763067039962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,3 +158,16 @@ MonoBehaviour:
   defaultHealth: 2
   onEnemyDamaged: {fileID: 11400000, guid: 8203b7e26bc8a574ba2171791186cf1f, type: 2}
   onEnemyDeath: {fileID: 11400000, guid: 1a2da77c15d8a424087376407dd50db3, type: 2}
+--- !u!114 &5162759227206459694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295090005558544154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc6cd1586547304794e1c9622af4c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
