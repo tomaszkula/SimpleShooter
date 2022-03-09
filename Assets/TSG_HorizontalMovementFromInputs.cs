@@ -11,16 +11,15 @@ public class TSG_HorizontalMovementFromInputs : MonoBehaviour, TSG_IMoveable
 	private void Awake()
     {
 		myTransform = transform;
-
 	}
 
     public void Move()
     {
-        controlByhNormalInputs();
-        controlByTouchInputs();
+        moveByNormalInputs();
+        moveByTouchInputs();
     }
 
-	private void controlByhNormalInputs()
+	private void moveByNormalInputs()
 	{
 		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
@@ -32,7 +31,7 @@ public class TSG_HorizontalMovementFromInputs : MonoBehaviour, TSG_IMoveable
 		}
 	}
 
-	private void controlByTouchInputs()
+	private void moveByTouchInputs()
 	{
 		if (Input.touchCount < 1)
 		{
