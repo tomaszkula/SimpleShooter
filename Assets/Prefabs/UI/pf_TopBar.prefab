@@ -726,7 +726,7 @@ GameObject:
   - component: {fileID: 2281976174743304570}
   - component: {fileID: 4790786687047464543}
   m_Layer: 5
-  m_Name: TopBar
+  m_Name: pf_TopBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

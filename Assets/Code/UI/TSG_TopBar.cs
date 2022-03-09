@@ -3,7 +3,7 @@
     using TMPro;
     using UnityEngine;
 
-    public class TopBar : MonoBehaviour
+    public class TSG_TopBar : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] TextMeshProUGUI healthTMP = null;

@@ -11,6 +11,14 @@ public class TSG_EnemyHealth : MonoBehaviour, TSG_IHurtable
     [SerializeField] TSG_GameEvent onEnemyDamaged = null;
     [SerializeField] TSG_GameEvent onEnemyDeath = null;
 
+    [Header("Components")]
+    TSG_IDestroyable iDestroyable = null;
+
+    private void Awake()
+    {
+        iDestroyable = GetComponent<TSG_IDestroyable>();
+    }
+
     private void Start()
     {
         health = defaultHealth;
@@ -40,7 +48,15 @@ public class TSG_EnemyHealth : MonoBehaviour, TSG_IHurtable
 
     private void die()
     {
-        Destroy(gameObject);
+        if (iDestroyable != null)
+        {
+            gameObject.SetActive(false);
+            iDestroyable.Destroy();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
         onEnemyDeath?.Invoke(new TSG_GameEventData()
         {

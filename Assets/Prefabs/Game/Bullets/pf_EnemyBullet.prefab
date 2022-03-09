@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 2649827983493866746}
   - component: {fileID: 274776011232356595}
   - component: {fileID: 274776011232356599}
+  - component: {fileID: 1275974055600156964}
+  - component: {fileID: 7689755796495347126}
+  - component: {fileID: 614979707622488002}
   m_Layer: 9
   m_Name: pf_EnemyBullet
   m_TagString: Untagged
@@ -125,4 +128,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367f08bb4b724b6bb257b1277e8a75c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletConfig: {fileID: 11400000, guid: c8346941cb4d80547b60bd3b2a47ecd2, type: 2}
+--- !u!114 &1275974055600156964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274776011232356594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98462bca0c290174899825b0d8fee39f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+--- !u!114 &7689755796495347126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274776011232356594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe533247d33ab745bcf3460917eb5d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackerConfig: {fileID: 11400000, guid: c8346941cb4d80547b60bd3b2a47ecd2, type: 2}
+--- !u!114 &614979707622488002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274776011232356594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f7fc6bdff19ca4f8732e82a089a021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletObjectsPool: {fileID: 11400000, guid: ce09449d5f6e23b4a8b600cece5ef0f4, type: 2}
