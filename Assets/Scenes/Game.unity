@@ -157,6 +157,7 @@ MonoBehaviour:
   enemyObjectsPools:
   - {fileID: 11400000, guid: 8299ab1b3c234154991c24c7cc521ab0, type: 2}
   - {fileID: 11400000, guid: 8e1e03536ab270d46b43c485fc62f264, type: 2}
+  - {fileID: 11400000, guid: 61855ba205a92c0468b49c5e53f63795, type: 2}
   playerObjectsPool: {fileID: 11400000, guid: 28fe7472db24509429bfa833ae7b3cbe, type: 2}
   enemyConfig:
     Hitpoints: 2

@@ -13,4 +13,9 @@ public struct TSG_MinMax
         Min = _min;
         Max = _max;
     }
+
+    public bool IsInRange(float _value)
+    {
+        return Min <= _value && Max <= _value;
+    }
 }
