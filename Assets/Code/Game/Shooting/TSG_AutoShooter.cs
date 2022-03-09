@@ -29,7 +29,7 @@ public class TSG_AutoShooter : MonoBehaviour, TSG_IShooter
         {
             shotDelay = shotCooldown.Random;
 
-            Bullet _bullet = bulletObjectsPool.Get();
+            TSG_Bullet _bullet = bulletObjectsPool.Get();
             _bullet.transform.position = bulletsSpawner.position;
             _bullet.transform.forward = bulletsSpawner.forward;
             _bullet.Setup(gameObject);

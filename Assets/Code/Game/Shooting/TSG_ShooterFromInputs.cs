@@ -16,6 +16,11 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
 
     public void Shoot()
     {
+		if (shootDelay > 0f)
+		{
+			shootDelay -= Time.deltaTime;
+		}
+
 		moveByNormalInputs();
 		moveByTouchInputs();
 	}
@@ -49,17 +54,15 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
     {
 		if(shootDelay > 0f)
         {
-			shootDelay -= Time.deltaTime;
-		}
-        else
-        {
-			shootDelay = shootCooldown;
+			return;
+        }
 
-			Bullet _bullet = bulletObjectsPool.Get();
-			_bullet.transform.position = bulletsSpawner.position;
-			_bullet.transform.forward = bulletsSpawner.forward;
-			_bullet.Setup(gameObject);
-		}
+		shootDelay = shootCooldown;
+
+		TSG_Bullet _bullet = bulletObjectsPool.Get();
+		_bullet.transform.position = bulletsSpawner.position;
+		_bullet.transform.forward = bulletsSpawner.forward;
+		_bullet.Setup(gameObject);
 	}
 
 	private Vector2 normalizeTouchPosition(Vector2 _touchPosition)

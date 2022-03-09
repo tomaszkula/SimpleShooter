@@ -2,14 +2,11 @@ using UnityEngine;
 
 namespace TSG.Game
 {
-    public class Bullet : MonoBehaviour
+    public class TSG_Bullet : MonoBehaviour
 	{
 		[Header("Variables")]
-		[SerializeField] TSG_DamageType damageType = null;
-		[SerializeField] float damage = 0f;
-		[SerializeField] float moveSpeed = 0f;
+		[SerializeField] TSG_BulletConfig bulletConfig = null;
 
-		[Header("")]
 		GameObject attacker = null;
 
 		[Header("Components")]
@@ -30,7 +27,7 @@ namespace TSG.Game
 				return;
             }
 
-			bool _didDamage = _iDamageable.Damage(damageType, damage, gameObject, attacker, _other.ClosestPoint(myTransform.position));
+			bool _didDamage = _iDamageable.Damage(bulletConfig.DamageType, bulletConfig.Damage, gameObject, attacker, _other.ClosestPoint(myTransform.position));
 			if(_didDamage)
             {
 				Destroy(gameObject);
@@ -41,7 +38,7 @@ namespace TSG.Game
 		{
 			attacker = _attacker;
 
-			myRigidbody.velocity = moveSpeed * myTransform.forward;
+			myRigidbody.velocity = bulletConfig.MoveSpeed * myTransform.forward;
 		}
 	}
 }
