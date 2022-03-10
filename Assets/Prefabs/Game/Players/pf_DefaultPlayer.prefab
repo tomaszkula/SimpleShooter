@@ -217,10 +217,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultBulletConfig: {fileID: 11400000, guid: d806c8560542cde438e7b3c59370148f, type: 2}
-  defaultShootingPattern: {fileID: 11400000, guid: e1884dc091f9d2d44abb294bd574020a, type: 2}
+  defaultShootingPattern: {fileID: 11400000, guid: 51a16c7a06b975246908ce507769e930, type: 2}
   bulletsSpawner: {fileID: 7346342239222861729}
-  onBulletSelect: {fileID: 11400000, guid: f2cb6fc442241e24b8d4f3a9adc6b949, type: 2}
-  onShootingPatternChangeEvent: {fileID: 0}
+  onBulletChangeEvent: {fileID: 11400000, guid: f2cb6fc442241e24b8d4f3a9adc6b949, type: 2}
+  onShootingPatternChangeEvent: {fileID: 11400000, guid: 479c41e9b42b45a449402ee4031f5f23, type: 2}
 --- !u!114 &3920685808131610825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,7 +253,23 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 8376569994841715743}
           m_TargetAssemblyTypeName: TSG_ShooterFromInputs, Assembly-CSharp
-          m_MethodName: OnBulletSellect
+          m_MethodName: OnBulletChange
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - GameEvent: {fileID: 11400000, guid: 479c41e9b42b45a449402ee4031f5f23, type: 2}
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8376569994841715743}
+          m_TargetAssemblyTypeName: TSG_ShooterFromInputs, Assembly-CSharp
+          m_MethodName: OnShootingPatternChange
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

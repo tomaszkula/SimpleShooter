@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 183a37dfaf767c04aa2c6b48c6a2f5d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onBulletSelectEvent: {fileID: 11400000, guid: f2cb6fc442241e24b8d4f3a9adc6b949, type: 2}
+  onBulletChangeEvent: {fileID: 11400000, guid: f2cb6fc442241e24b8d4f3a9adc6b949, type: 2}
 --- !u!114 &4789529476037169048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,8 +64,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 9211132995587289260}
-          m_TargetAssemblyTypeName: TSG_BulletsUI, Assembly-CSharp
-          m_MethodName: OnBulletSellect
+          m_TargetAssemblyTypeName: TSG_BulletSelectorsGroup, Assembly-CSharp
+          m_MethodName: OnBulletChange
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -263,7 +263,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3424295417131437773, guid: b09d11b2b04b7544f8949c0fe49b509c, type: 3}
       propertyPath: m_Name
-      value: pf_IconButton_Default
+      value: pf_BulletSelector_Default
       objectReference: {fileID: 0}
     - target: {fileID: 4717350928299260450, guid: b09d11b2b04b7544f8949c0fe49b509c, type: 3}
       propertyPath: m_Sprite
@@ -417,7 +417,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3424295417131437773, guid: b09d11b2b04b7544f8949c0fe49b509c, type: 3}
       propertyPath: m_Name
-      value: pf_IconButton_Explosive
+      value: pf_BulletSelector_Explosive
       objectReference: {fileID: 0}
     - target: {fileID: 4717350928299260450, guid: b09d11b2b04b7544f8949c0fe49b509c, type: 3}
       propertyPath: m_Sprite

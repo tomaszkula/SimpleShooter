@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 5837824297538200971}
   - component: {fileID: 6037456075256526003}
   m_Layer: 0
-  m_Name: pf_IconButton
+  m_Name: pf_BulletSelector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

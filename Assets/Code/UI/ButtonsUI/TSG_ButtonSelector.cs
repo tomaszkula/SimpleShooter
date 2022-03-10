@@ -3,22 +3,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class TSG_BulletSelectorButton : MonoBehaviour
+public class TSG_ButtonSelector : MonoBehaviour
 {
-    [Header("Properties")]
-    [SerializeField] TSG_BulletConfig bulletConfig = null;
-
-    public TSG_BulletConfig BulletConfig => bulletConfig;
-
     [Header("Selection")]
     [SerializeField] Image selectionImage = null;
     [SerializeField] Color selectedColor = new Color();
     [SerializeField] Color deselectedColor = new Color();
 
     [Header("Components")]
-    Button myButton = null;
+    protected Button myButton = null;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         myButton = GetComponent<Button>();
     }

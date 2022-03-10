@@ -4,7 +4,8 @@ using UnityEngine;
 public class TSG_AutoShooter : MonoBehaviour, TSG_IShooter
 {
     [Header("Variables")]
-    [SerializeField] TSG_BulletConfig shooterConfig = null;
+    [SerializeField] TSG_BulletConfig bulletConfig = null;
+    [SerializeField] TSG_ShootingPattern shootingPattern = null;
 
     float shotDelay = 0f;
 
@@ -13,7 +14,7 @@ public class TSG_AutoShooter : MonoBehaviour, TSG_IShooter
 
     private void Start()
     {
-        shotDelay = shooterConfig.Cooldown.Random;
+        shotDelay = bulletConfig.Cooldown.Random;
     }
 
     public void Shoot()
@@ -24,15 +25,8 @@ public class TSG_AutoShooter : MonoBehaviour, TSG_IShooter
         }
         else
         {
-            shotDelay = shooterConfig.Cooldown.Random;
-
-            TSG_Bullet _bullet = shooterConfig?.BulletObjectsPool?.Get()?.GetComponent<TSG_Bullet>();
-            if (_bullet != null)
-            {
-                _bullet.transform.position = bulletsSpawner.position;
-                _bullet.transform.forward = bulletsSpawner.forward;
-                _bullet.Setup(gameObject);
-            }
+            shotDelay = bulletConfig.Cooldown.Random;
+            shootingPattern?.ApplyShootingPattern(gameObject, bulletConfig, bulletsSpawner);
         }
     }
 }

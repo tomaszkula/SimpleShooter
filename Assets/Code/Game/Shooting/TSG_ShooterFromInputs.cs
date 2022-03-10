@@ -15,7 +15,7 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
 	[SerializeField] Transform bulletsSpawner = null;
 
 	[Header("Events")]
-	[SerializeField] TSG_GameEvent onBulletSelect = null;
+	[SerializeField] TSG_GameEvent onBulletChangeEvent = null;
 	[SerializeField] TSG_GameEvent onShootingPatternChangeEvent = null;
 
     private void Start()
@@ -24,7 +24,7 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
 		setShootingPattern(defaultShootingPattern, true);
 	}
 
-	public void OnBulletSellect(TSG_GameEventData _gameEventData)
+	public void OnBulletChange(TSG_GameEventData _gameEventData)
 	{
 		TSG_BulletConfig _bulletConfig = _gameEventData.ScriptableObjectValues[0] as TSG_BulletConfig;
 		setBulletConfig(_bulletConfig, false);
@@ -96,7 +96,7 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
 
 		if (_shouldBroadcast)
 		{
-			onBulletSelect?.Invoke(new TSG_GameEventData()
+			onBulletChangeEvent?.Invoke(new TSG_GameEventData()
 			{
 				ScriptableObjectValues = new ScriptableObject[] { bulletConfig }
 			});

@@ -216,7 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f5c66359ecda84eb95e4bb5314219e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shooterConfig: {fileID: 11400000, guid: 4c34c5e5a69be3d4dbee22754a967881, type: 2}
+  bulletConfig: {fileID: 11400000, guid: 4c34c5e5a69be3d4dbee22754a967881, type: 2}
+  shootingPattern: {fileID: 11400000, guid: 51a16c7a06b975246908ce507769e930, type: 2}
   bulletsSpawner: {fileID: 298609028125888779}
 --- !u!114 &5419460107851040173
 MonoBehaviour:
