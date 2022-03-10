@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d07f3fa5ecb1f24c828fcd06a60d33c, type: 3}
-  m_Name: shooterConfig_DefaultEnemy
+  m_Name: bulletConfig_DefaultEnemy
   m_EditorClassIdentifier: 
   BulletObjectsPool: {fileID: 11400000, guid: ce09449d5f6e23b4a8b600cece5ef0f4, type: 2}
   Cooldown:

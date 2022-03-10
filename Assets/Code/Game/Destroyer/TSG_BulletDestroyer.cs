@@ -15,11 +15,6 @@ public class TSG_BulletDestroyer : MonoBehaviour, TSG_IDestroyable
 
     public void Destroy()
     {
-        gameObject.SetActive(false);
-
-        if (bullet != null)
-        {
-            bulletObjectsPool.Release(bullet);
-        }
+        bulletObjectsPool.Release(bullet);
     }
 }

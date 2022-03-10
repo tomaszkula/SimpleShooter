@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 4794343577453230822}
   - component: {fileID: 8100310224747227870}
   - component: {fileID: 8376569994841715743}
+  - component: {fileID: 3709808382320555367}
   m_Layer: 6
   m_Name: pf_Player
   m_TagString: Untagged
@@ -214,5 +215,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6cacb1b149d2eb4f95889606adac0b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shooterConfig: {fileID: 11400000, guid: d806c8560542cde438e7b3c59370148f, type: 2}
+  defaultBulletConfig: {fileID: 11400000, guid: d806c8560542cde438e7b3c59370148f, type: 2}
   bulletsSpawner: {fileID: 7346342239222861729}
+  onBulletSelect: {fileID: 11400000, guid: f2cb6fc442241e24b8d4f3a9adc6b949, type: 2}
+--- !u!114 &3709808382320555367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5331286619832824820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2d5b91e0720a664cac48bf1a8ac1059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEventResponses:
+  - GameEvent: {fileID: 11400000, guid: f2cb6fc442241e24b8d4f3a9adc6b949, type: 2}
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8376569994841715743}
+          m_TargetAssemblyTypeName: TSG_ShooterFromInputs, Assembly-CSharp
+          m_MethodName: OnBulletSellect
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

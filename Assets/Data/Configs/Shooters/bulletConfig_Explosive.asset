@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d07f3fa5ecb1f24c828fcd06a60d33c, type: 3}
-  m_Name: shooterConfig_DefaultPlayer
+  m_Name: bulletConfig_Explosive
   m_EditorClassIdentifier: 
-  BulletObjectsPool: {fileID: 11400000, guid: a0c76340d733bbd4b8a52f273f3d0065, type: 2}
+  BulletObjectsPool: {fileID: 11400000, guid: 5e277a02395740548a9ca4a5f99a400a, type: 2}
   Cooldown:
     Min: 0.5
     Max: 0.5

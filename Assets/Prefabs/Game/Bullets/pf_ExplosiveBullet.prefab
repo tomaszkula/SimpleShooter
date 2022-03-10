@@ -153,8 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393ec53ce2660db409e682836efaecbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackerConfig: {fileID: 11400000, guid: c8346941cb4d80547b60bd3b2a47ecd2, type: 2}
-  explosionRange: 2
+  attackerConfig: {fileID: 11400000, guid: 64e0732970341ac4aa6475b1c0dc261e, type: 2}
+  explosionRange: 4
+  particleObjectsPool: {fileID: 11400000, guid: ec20444409d1a7e40b3228a30d4e28b8, type: 2}
 --- !u!114 &4734400535334017736
 MonoBehaviour:
   m_ObjectHideFlags: 0

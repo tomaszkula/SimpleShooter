@@ -26,11 +26,19 @@ public class TSG_ObjectsPool<T> : ScriptableObject where T : MonoBehaviour
             createNewInstance();
         }
 
-        return instances.Dequeue();
+        T _instance = instances.Dequeue();
+        _instance.gameObject.SetActive(true);
+        return _instance;
     }
 
     public void Release(T _instance)
     {
+        if(_instance == null)
+        {
+            return;
+        }
+
+        _instance.gameObject.SetActive(false);
         instances.Enqueue(_instance);
     }
 

@@ -32,7 +32,7 @@ public class TSG_Attacker : MonoBehaviour, TSG_IAttackable
             }
             else
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

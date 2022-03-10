@@ -4,7 +4,7 @@ using UnityEngine;
 public class TSG_AutoShooter : MonoBehaviour, TSG_IShooter
 {
     [Header("Variables")]
-    [SerializeField] TSG_ShooterConfig shooterConfig = null;
+    [SerializeField] TSG_BulletConfig shooterConfig = null;
 
     float shotDelay = 0f;
 

@@ -29,6 +29,12 @@ public class TSG_ExplosiveAttacker : MonoBehaviour, TSG_IAttackable
 
     public void Attack(Collider _targetCollider, GameObject _attacker)
     {
+        TSG_IDamageable _targetIDamageable = _targetCollider?.GetComponent<TSG_IDamageable>();
+        if(_targetIDamageable == null)
+        {
+            return;
+        }
+
         int _targetsCount = Physics.OverlapSphereNonAlloc(myTransform.position, explosionRange, explosionTargetColliders);
         for (int i = 0; i < _targetsCount; i++)
         {
@@ -42,9 +48,12 @@ public class TSG_ExplosiveAttacker : MonoBehaviour, TSG_IAttackable
             _iDamageable?.Damage(attackerConfig.DamageType, attackerConfig.Damage, gameObject, _attacker, _targetCollider.ClosestPoint(myTransform.position));
         }
 
-        TSG_Particle _particle = particleObjectsPool.Get();
-        _particle.transform.position = myTransform.position;
-        _particle.Play();
+        TSG_Particle _particle = particleObjectsPool?.Get();
+        if (_particle != null)
+        {
+            _particle.transform.position = myTransform.position;
+            _particle.Play();
+        }
 
         if (iDestroyable != null)
         {
@@ -52,7 +61,7 @@ public class TSG_ExplosiveAttacker : MonoBehaviour, TSG_IAttackable
         }
         else
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

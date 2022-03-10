@@ -4,22 +4,41 @@ using UnityEngine;
 public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
 {
 	[Header("Variables")]
-	[SerializeField] TSG_ShooterConfig shooterConfig = null;
+	[SerializeField] TSG_BulletConfig defaultBulletConfig = null;
 
     float shootDelay = 0f;
+	TSG_BulletConfig bulletConfig = null;
 
 	[Header("References")]
 	[SerializeField] Transform bulletsSpawner = null;
 
+	[Header("Events")]
+	[SerializeField] TSG_GameEvent onBulletSelect = null;
+
+    private void Start()
+    {
+		setBulletConfig(defaultBulletConfig, true);
+	}
+
+    public void OnBulletSellect(TSG_GameEventData _gameEventData)
+    {
+		TSG_BulletConfig _bulletConfig = _gameEventData.ScriptableObjectValues[0] as TSG_BulletConfig;
+		setBulletConfig(_bulletConfig, false);
+	}
+
     public void Shoot()
+    {
+		manageShootDelay();
+		shootByNormalInputs();
+		shootByTouchInputs();
+	}
+
+	private void manageShootDelay()
     {
 		if (shootDelay > 0f)
 		{
 			shootDelay -= Time.deltaTime;
 		}
-
-		shootByNormalInputs();
-		shootByTouchInputs();
 	}
 
 	private void shootByNormalInputs()
@@ -54,18 +73,28 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
     {
 		if(shootDelay > 0f)
         {
-			Debug.Log("No shoot");
 			return;
         }
 
-		shootDelay = shooterConfig.Cooldown.Random;
+		shootDelay = defaultBulletConfig.Cooldown.Random;
 
-		TSG_Bullet _bullet = shooterConfig.BulletObjectsPool.Get();
+		TSG_Bullet _bullet = defaultBulletConfig.BulletObjectsPool.Get();
 		_bullet.transform.position = bulletsSpawner.position;
 		_bullet.transform.forward = bulletsSpawner.forward;
 		_bullet.Setup(gameObject);
+	}
 
-		Debug.Log("Shoot");
+	private void setBulletConfig(TSG_BulletConfig _bulletConfig, bool _shouldBroadcast)
+	{
+		bulletConfig = _bulletConfig;
+
+		if (_shouldBroadcast)
+		{
+			onBulletSelect?.Invoke(new TSG_GameEventData()
+			{
+				ScriptableObjectValues = new ScriptableObject[] { bulletConfig }
+			});
+		}
 	}
 
 	private Vector2 normalizeTouchPosition(Vector2 _touchPosition)
