@@ -17,4 +17,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e1e03536ab270d46b43c485fc62f264, type: 2}
   - {fileID: 11400000, guid: 61855ba205a92c0468b49c5e53f63795, type: 2}
   SpawnDelay: 2
-  XSpawnPositionRange: {x: -12, y: 12}
+  XSpawnPositionRange:
+    Min: -12
+    Max: 12
