@@ -33,6 +33,11 @@ public class TSG_ObjectsPool : ScriptableObject
         }
 
         GameObject _instance = instances.Dequeue();
+        if(_instance == null)
+        {
+            return Get();
+        }
+
         _instance.SetActive(true);
         return _instance;
     }
