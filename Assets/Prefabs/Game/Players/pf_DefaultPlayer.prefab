@@ -217,8 +217,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultBulletConfig: {fileID: 11400000, guid: d806c8560542cde438e7b3c59370148f, type: 2}
+  defaultShootingPattern: {fileID: 11400000, guid: e1884dc091f9d2d44abb294bd574020a, type: 2}
   bulletsSpawner: {fileID: 7346342239222861729}
   onBulletSelect: {fileID: 11400000, guid: f2cb6fc442241e24b8d4f3a9adc6b949, type: 2}
+  onShootingPatternChangeEvent: {fileID: 0}
 --- !u!114 &3920685808131610825
 MonoBehaviour:
   m_ObjectHideFlags: 0

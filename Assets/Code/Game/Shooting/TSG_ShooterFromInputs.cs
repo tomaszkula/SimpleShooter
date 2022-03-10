@@ -3,30 +3,40 @@ using UnityEngine;
 
 public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
 {
-	[Header("Variables")]
+	[Header("Properties")]
 	[SerializeField] TSG_BulletConfig defaultBulletConfig = null;
+	[SerializeField] TSG_ShootingPattern defaultShootingPattern = null;
 
     float shootDelay = 0f;
 	TSG_BulletConfig bulletConfig = null;
+	TSG_ShootingPattern shootingPattern = null;
 
 	[Header("References")]
 	[SerializeField] Transform bulletsSpawner = null;
 
 	[Header("Events")]
 	[SerializeField] TSG_GameEvent onBulletSelect = null;
+	[SerializeField] TSG_GameEvent onShootingPatternChangeEvent = null;
 
     private void Start()
     {
 		setBulletConfig(defaultBulletConfig, true);
+		setShootingPattern(defaultShootingPattern, true);
 	}
 
-    public void OnBulletSellect(TSG_GameEventData _gameEventData)
-    {
+	public void OnBulletSellect(TSG_GameEventData _gameEventData)
+	{
 		TSG_BulletConfig _bulletConfig = _gameEventData.ScriptableObjectValues[0] as TSG_BulletConfig;
 		setBulletConfig(_bulletConfig, false);
 	}
 
-    public void Shoot()
+	public void OnShootingPatternChange(TSG_GameEventData _gameEventData)
+	{
+		TSG_ShootingPattern _shootingPattern = _gameEventData.ScriptableObjectValues[0] as TSG_ShootingPattern;
+		setShootingPattern(_shootingPattern, false);
+	}
+
+	public void Shoot()
     {
 		manageShootDelay();
 		shootByNormalInputs();
@@ -77,14 +87,7 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
         }
 
 		shootDelay = bulletConfig.Cooldown.Random;
-
-		TSG_Bullet _bullet = bulletConfig?.BulletObjectsPool?.Get()?.GetComponent<TSG_Bullet>();
-		if (_bullet != null)
-		{
-			_bullet.transform.position = bulletsSpawner.position;
-			_bullet.transform.forward = bulletsSpawner.forward;
-			_bullet.Setup(gameObject);
-		}
+		shootingPattern?.ApplyShootingPattern(gameObject, bulletConfig, bulletsSpawner);
 	}
 
 	private void setBulletConfig(TSG_BulletConfig _bulletConfig, bool _shouldBroadcast)
@@ -96,6 +99,19 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
 			onBulletSelect?.Invoke(new TSG_GameEventData()
 			{
 				ScriptableObjectValues = new ScriptableObject[] { bulletConfig }
+			});
+		}
+	}
+
+	private void setShootingPattern(TSG_ShootingPattern _shootingPattern, bool _shouldBroadcast)
+	{
+		shootingPattern = _shootingPattern;
+
+		if (_shouldBroadcast)
+		{
+			onShootingPatternChangeEvent?.Invoke(new TSG_GameEventData()
+			{
+				ScriptableObjectValues = new ScriptableObject[] { shootingPattern }
 			});
 		}
 	}
