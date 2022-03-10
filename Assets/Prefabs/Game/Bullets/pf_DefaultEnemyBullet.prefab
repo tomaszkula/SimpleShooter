@@ -14,11 +14,11 @@ GameObject:
   - component: {fileID: 2649827983493866746}
   - component: {fileID: 274776011232356595}
   - component: {fileID: 274776011232356599}
-  - component: {fileID: 3578144083792785172}
-  - component: {fileID: 4397978069539356924}
-  - component: {fileID: 4734400535334017736}
-  m_Layer: 8
-  m_Name: pf_PlayerBullet
+  - component: {fileID: 1275974055600156964}
+  - component: {fileID: 7689755796495347126}
+  - component: {fileID: 614979707622488002}
+  m_Layer: 9
+  m_Name: pf_DefaultEnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6ad6e107150b2bf47bda2e4df7b8a5ac, type: 2}
+  - {fileID: 2100000, guid: 933e600b236c0fe49a22be3de28eb813, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367f08bb4b724b6bb257b1277e8a75c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3578144083792785172
+--- !u!114 &1275974055600156964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
---- !u!114 &4397978069539356924
+--- !u!114 &7689755796495347126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackerConfig: {fileID: 11400000, guid: c8346941cb4d80547b60bd3b2a47ecd2, type: 2}
---- !u!114 &4734400535334017736
+--- !u!114 &614979707622488002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,4 +166,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f7fc6bdff19ca4f8732e82a089a021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletObjectsPool: {fileID: 11400000, guid: a0c76340d733bbd4b8a52f273f3d0065, type: 2}
+  objectsPool: {fileID: 11400000, guid: ce09449d5f6e23b4a8b600cece5ef0f4, type: 2}

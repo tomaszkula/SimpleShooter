@@ -52,12 +52,11 @@ public class TSG_PlayerHealth : MonoBehaviour, TSG_IHurtable
     {
         if (iDestroyable != null)
         {
-            gameObject.SetActive(false);
             iDestroyable.Destroy();
         }
         else
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         onPlayerDeath?.Invoke();

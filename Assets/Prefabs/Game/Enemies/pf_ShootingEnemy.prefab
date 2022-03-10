@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 5031227297016360156}
   - component: {fileID: 5161838460093148953}
   - component: {fileID: 3677791630363003223}
+  - component: {fileID: 5419460107851040173}
   m_Layer: 7
   m_Name: pf_ShootingEnemy
   m_TagString: Untagged
@@ -217,3 +218,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooterConfig: {fileID: 11400000, guid: 4c34c5e5a69be3d4dbee22754a967881, type: 2}
   bulletsSpawner: {fileID: 298609028125888779}
+--- !u!114 &5419460107851040173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295090005558544154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f7fc6bdff19ca4f8732e82a089a021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsPool: {fileID: 11400000, guid: 8e1e03536ab270d46b43c485fc62f264, type: 2}

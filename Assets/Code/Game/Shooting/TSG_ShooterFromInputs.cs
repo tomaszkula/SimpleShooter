@@ -76,12 +76,15 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
 			return;
         }
 
-		shootDelay = defaultBulletConfig.Cooldown.Random;
+		shootDelay = bulletConfig.Cooldown.Random;
 
-		TSG_Bullet _bullet = defaultBulletConfig.BulletObjectsPool.Get();
-		_bullet.transform.position = bulletsSpawner.position;
-		_bullet.transform.forward = bulletsSpawner.forward;
-		_bullet.Setup(gameObject);
+		TSG_Bullet _bullet = bulletConfig?.BulletObjectsPool?.Get()?.GetComponent<TSG_Bullet>();
+		if (_bullet != null)
+		{
+			_bullet.transform.position = bulletsSpawner.position;
+			_bullet.transform.forward = bulletsSpawner.forward;
+			_bullet.Setup(gameObject);
+		}
 	}
 
 	private void setBulletConfig(TSG_BulletConfig _bulletConfig, bool _shouldBroadcast)

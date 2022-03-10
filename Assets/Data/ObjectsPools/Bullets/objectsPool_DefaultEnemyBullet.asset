@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad0aebddf4afef43a60b44429647ce1, type: 3}
-  m_Name: particleObjectsPool_Explosion
+  m_Script: {fileID: 11500000, guid: cdccfe627e73c8348a9390e2207c01d1, type: 3}
+  m_Name: objectsPool_DefaultEnemyBullet
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2947884504713468255, guid: ee1ced650b3e6064db045aff2a10c6a1, type: 3}
+  prefab: {fileID: 274776011232356594, guid: c40090bd186d2ba499296749718011e5, type: 3}
   countToSpawnOnInit: 10

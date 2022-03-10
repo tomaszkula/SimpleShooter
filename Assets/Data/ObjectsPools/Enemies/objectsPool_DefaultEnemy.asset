@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e98d27346f962f42a2d6984843700c5, type: 3}
-  m_Name: playerObjectsPool_Default
+  m_Script: {fileID: 11500000, guid: cdccfe627e73c8348a9390e2207c01d1, type: 3}
+  m_Name: objectsPool_DefaultEnemy
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3286783642217459440, guid: 4cc1da050a3da8146888027bb658f3bb, type: 3}
-  countToSpawnOnInit: 1
+  prefab: {fileID: 7295090005558544154, guid: 10fbab8caa97ad64cb9b08066108c5f2, type: 3}
+  countToSpawnOnInit: 10

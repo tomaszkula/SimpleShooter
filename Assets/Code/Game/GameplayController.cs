@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace TSG.Game
 {
@@ -19,7 +18,7 @@ namespace TSG.Game
         [SerializeField] TSG_GameEvent onLevelFail = null;
 
         [Header("Objects Pools")]
-        [SerializeField] TSG_PlayerObjectsPool playerObjectsPool = null;
+        [SerializeField] TSG_ObjectsPool playerObjectsPool = null;
         
         private void Start()
         {
@@ -48,18 +47,23 @@ namespace TSG.Game
 
         private void spawnPlayer()
         {
-            TSG_Player _player = playerObjectsPool.Get();
-            _player.transform.position = playerSpawnPoint.position;
-            _player.transform.forward = playerSpawnPoint.forward;
+            TSG_Player _player = playerObjectsPool?.Get()?.GetComponent<TSG_Player>();
+            if (_player != null)
+            {
+                _player.transform.position = playerSpawnPoint.position;
+                _player.transform.forward = playerSpawnPoint.forward;
+            }
         }
         
         private void spawnEnemy()
         {
-            TSG_EnemyObjectsPool _randomEnemyObjectsPool = spawnerConfig.GetRandomEnemyObjectsPool();
-            TSG_Enemy _enemy = _randomEnemyObjectsPool.Get();
-            _enemy.transform.position = enemySpawnPoint.transform.position +
-                new Vector3(Random.Range(spawnerConfig.XSpawnPositionRange.x, spawnerConfig.XSpawnPositionRange.y), 0, 0);
-            _enemy.transform.forward = enemySpawnPoint.forward;
+            TSG_ObjectsPool _randomEnemyObjectsPool = spawnerConfig?.GetRandomEnemyObjectsPool();
+            TSG_Enemy _enemy = _randomEnemyObjectsPool?.Get()?.GetComponent<TSG_Enemy>();
+            if (_enemy != null)
+            {
+                _enemy.transform.position = enemySpawnPoint.transform.position + new Vector3(spawnerConfig.XSpawnPositionRange.Random, 0, 0);
+                _enemy.transform.forward = enemySpawnPoint.forward;
+            }
         }
     }
 }

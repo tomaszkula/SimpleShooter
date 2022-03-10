@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 5258353856902279801}
   - component: {fileID: 2947884504713468255}
   - component: {fileID: 2964120974941981281}
+  - component: {fileID: 4167221643678337655}
   m_Layer: 0
-  m_Name: pf_Explosion
+  m_Name: pf_ExplosionParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4889,3 +4890,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onDisableEvent: {fileID: 11400000, guid: 908dab2ff20e2ce4091ea59c008e5af6, type: 2}
+--- !u!114 &4167221643678337655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001538381937800491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f7fc6bdff19ca4f8732e82a089a021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsPool: {fileID: 11400000, guid: ec20444409d1a7e40b3228a30d4e28b8, type: 2}

@@ -5,7 +5,7 @@ public class TSG_ExplosiveAttacker : MonoBehaviour, TSG_IAttackable
     [Header("Variables")]
     [SerializeField] TSG_AttackerConfig attackerConfig = null;
     [SerializeField] float explosionRange = 0f;
-    [SerializeField] TSG_ParticleObjectsPool particleObjectsPool = null;
+    [SerializeField] TSG_ObjectsPool particleObjectsPool = null;
 
     Collider[] explosionTargetColliders = new Collider[10];
 
@@ -48,7 +48,7 @@ public class TSG_ExplosiveAttacker : MonoBehaviour, TSG_IAttackable
             _iDamageable?.Damage(attackerConfig.DamageType, attackerConfig.Damage, gameObject, _attacker, _targetCollider.ClosestPoint(myTransform.position));
         }
 
-        TSG_Particle _particle = particleObjectsPool?.Get();
+        TSG_Particle _particle = particleObjectsPool?.Get()?.GetComponent<TSG_Particle>();
         if (_particle != null)
         {
             _particle.transform.position = myTransform.position;

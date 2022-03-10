@@ -19,9 +19,10 @@ public class TSG_BulletsUI : MonoBehaviour
         for (int i = 0; i < bulletSelectorButtons.Count; i++)
         {
             TSG_BulletSelectorButton _bulletSelectorButton = bulletSelectorButtons[i];
+
             _bulletSelectorButton.AddButtonOnClick(() =>
             {
-                SelectBullet(_bulletSelectorButton.BulletConfig);
+                selectBullet(_bulletSelectorButton.BulletConfig);
                 selectBulletSelectorButton(_bulletSelectorButton);
             });
         }
@@ -34,7 +35,7 @@ public class TSG_BulletsUI : MonoBehaviour
         selectBulletSelectorButton(_bulletSelectorButton);
     }
 
-    public void SelectBullet(TSG_BulletConfig _bulletConfig)
+    private void selectBullet(TSG_BulletConfig _bulletConfig)
     {
         onBulletSelectEvent?.Invoke(new TSG_GameEventData()
         {

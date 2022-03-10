@@ -50,12 +50,11 @@ public class TSG_EnemyHealth : MonoBehaviour, TSG_IHurtable
     {
         if (iDestroyable != null)
         {
-            gameObject.SetActive(false);
             iDestroyable.Destroy();
         }
         else
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         onEnemyDeath?.Invoke(new TSG_GameEventData()

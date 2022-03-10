@@ -26,10 +26,13 @@ public class TSG_AutoShooter : MonoBehaviour, TSG_IShooter
         {
             shotDelay = shooterConfig.Cooldown.Random;
 
-            TSG_Bullet _bullet = shooterConfig.BulletObjectsPool.Get();
-            _bullet.transform.position = bulletsSpawner.position;
-            _bullet.transform.forward = bulletsSpawner.forward;
-            _bullet.Setup(gameObject);
+            TSG_Bullet _bullet = shooterConfig?.BulletObjectsPool?.Get()?.GetComponent<TSG_Bullet>();
+            if (_bullet != null)
+            {
+                _bullet.transform.position = bulletsSpawner.position;
+                _bullet.transform.forward = bulletsSpawner.forward;
+                _bullet.Setup(gameObject);
+            }
         }
     }
 }

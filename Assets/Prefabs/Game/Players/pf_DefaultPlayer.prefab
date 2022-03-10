@@ -48,9 +48,10 @@ GameObject:
   - component: {fileID: 4794343577453230822}
   - component: {fileID: 8100310224747227870}
   - component: {fileID: 8376569994841715743}
+  - component: {fileID: 3920685808131610825}
   - component: {fileID: 3709808382320555367}
   m_Layer: 6
-  m_Name: pf_Player
+  m_Name: pf_DefaultPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,6 +219,19 @@ MonoBehaviour:
   defaultBulletConfig: {fileID: 11400000, guid: d806c8560542cde438e7b3c59370148f, type: 2}
   bulletsSpawner: {fileID: 7346342239222861729}
   onBulletSelect: {fileID: 11400000, guid: f2cb6fc442241e24b8d4f3a9adc6b949, type: 2}
+--- !u!114 &3920685808131610825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5331286619832824820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f7fc6bdff19ca4f8732e82a089a021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsPool: {fileID: 11400000, guid: 28fe7472db24509429bfa833ae7b3cbe, type: 2}
 --- !u!114 &3709808382320555367
 MonoBehaviour:
   m_ObjectHideFlags: 0
