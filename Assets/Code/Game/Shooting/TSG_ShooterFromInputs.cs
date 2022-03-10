@@ -18,11 +18,11 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
 			shootDelay -= Time.deltaTime;
 		}
 
-		moveByNormalInputs();
-		moveByTouchInputs();
+		shootByNormalInputs();
+		shootByTouchInputs();
 	}
 
-	private void moveByNormalInputs()
+	private void shootByNormalInputs()
 	{
 		if (Input.GetKey(KeyCode.Space))
 		{
@@ -30,20 +30,23 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
 		}
 	}
 
-	private void moveByTouchInputs()
+	private void shootByTouchInputs()
 	{
-		if (Input.touchCount < 1)
+		if (shootDelay > 0f || Input.touchCount < 1)
 		{
 			return;
 		}
 
-		Touch _touch = Input.GetTouch(0);
-		Vector2 _touchPosition = _touch.position;
-		Vector2 _normalizedTouchPosition = normalizeTouchPosition(_touchPosition);
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+			Touch _touch = Input.GetTouch(i);
+			Vector2 _touchPosition = _touch.position;
+			Vector2 _normalizedTouchPosition = normalizeTouchPosition(_touchPosition);
 
-		if (_normalizedTouchPosition.x > 0.4f && _normalizedTouchPosition.x < 0.6f)
-		{
-			shoot();
+			if (_normalizedTouchPosition.x > 0.4f && _normalizedTouchPosition.x < 0.6f)
+			{
+				shoot();
+			}
 		}
 	}
 
@@ -51,6 +54,7 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
     {
 		if(shootDelay > 0f)
         {
+			Debug.Log("No shoot");
 			return;
         }
 
@@ -60,6 +64,8 @@ public class TSG_ShooterFromInputs : MonoBehaviour, TSG_IShooter
 		_bullet.transform.position = bulletsSpawner.position;
 		_bullet.transform.forward = bulletsSpawner.forward;
 		_bullet.Setup(gameObject);
+
+		Debug.Log("Shoot");
 	}
 
 	private Vector2 normalizeTouchPosition(Vector2 _touchPosition)

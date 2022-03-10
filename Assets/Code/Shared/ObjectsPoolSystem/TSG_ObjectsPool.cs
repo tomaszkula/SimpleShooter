@@ -9,6 +9,8 @@ public class TSG_ObjectsPool<T> : ScriptableObject where T : MonoBehaviour
 
     Queue<T> instances = new Queue<T>();
 
+    public T Prefab => prefab;
+
     public void Init()
     {
         for (int i = 0; i < countToSpawnOnInit; i++)

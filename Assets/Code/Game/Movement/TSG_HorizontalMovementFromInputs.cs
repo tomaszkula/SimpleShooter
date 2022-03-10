@@ -38,17 +38,20 @@ public class TSG_HorizontalMovementFromInputs : MonoBehaviour, TSG_IMoveable
 			return;
 		}
 
-		Touch _touch = Input.GetTouch(0);
-		Vector2 _touchPosition = _touch.position;
-		Vector2 _normalizedTouchPosition = normalizeTouchPosition(_touchPosition);
+		for (int i = 0; i < Input.touchCount; i++)
+		{
+			Touch _touch = Input.GetTouch(i);
+			Vector2 _touchPosition = _touch.position;
+			Vector2 _normalizedTouchPosition = normalizeTouchPosition(_touchPosition);
 
-		if (_normalizedTouchPosition.x < 0.3f)
-		{
-			moveLeft();
-		}
-		else if (_normalizedTouchPosition.x > 0.7f)
-		{
-			moveRight();
+			if (_normalizedTouchPosition.x < 0.3f)
+			{
+				moveLeft();
+			}
+			else if (_normalizedTouchPosition.x > 0.7f)
+			{
+				moveRight();
+			}
 		}
 	}
 
