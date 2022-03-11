@@ -12,7 +12,7 @@ namespace TSG.Model
 			//mock data
 			Random.InitState(123);
 
-			for (int i = 0; i < 10000; ++i)
+			for (int i = 0; i < 100; ++i)
 			{
 				var r = Random.Range(0, NameList.Names.Length);
 				var p = new LeaderboardEntryModel($"{NameList.Names[r]}{(i * 317) % 100}", Random.Range(0, 1000) * 50);
@@ -25,6 +25,11 @@ namespace TSG.Model
 		public void AddItem(LeaderboardEntryModel model)
 		{
 			entries.Add(model);
+		}
+
+		public void Sort()
+		{
+			entries.Sort();
 		}
 
 		private readonly List<LeaderboardEntryModel> entries = new List<LeaderboardEntryModel>();

@@ -207,8 +207,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0}
-  m_SizeDelta: {x: -49.999985, y: -50}
+  m_AnchoredPosition: {x: -12.499985, y: 0}
+  m_SizeDelta: {x: -25, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5673425909973633357
 CanvasRenderer:
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6092710075652078088}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1596,8 +1596,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000036390255}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &4254124085674613625
 MonoBehaviour:
@@ -1745,9 +1745,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHighscoresDataToDisplayCount: 10
-  highscoreUIPrefab: {fileID: 2623226011409512302, guid: 78acd1b1555e2d047977e751ee5cb533, type: 3}
+  leaderboardEntryUIPrefab: {fileID: 11400000, guid: 6d87fefafd4600146ade039c14242461, type: 2}
   highscoresContainer: {fileID: 7424974043090942519}
   scoreTMP: {fileID: 3462203741280366744}
+  scrollRect: {fileID: 104744472337173128}
 --- !u!114 &8168099245230453651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1783,7 +1784,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 6778889631158283281}
           m_TargetAssemblyTypeName: TSG.Game.TSG_LeaderboardUI, Assembly-CSharp
-          m_MethodName: OnHighscoreDataUpdate
+          m_MethodName: OnLeaderboardUpdate
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1999,7 +2000,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.9999999, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

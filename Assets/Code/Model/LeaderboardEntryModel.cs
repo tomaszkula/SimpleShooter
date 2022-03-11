@@ -1,6 +1,8 @@
+using System;
+
 namespace TSG.Model
 {
-	public class LeaderboardEntryModel
+	public class LeaderboardEntryModel : IComparable<LeaderboardEntryModel>
 	{
 		public string Name { get; }
 		public int Score { get; }
@@ -10,5 +12,10 @@ namespace TSG.Model
 			Name = name;
 			Score = score;
 		}
-	}
+
+        public int CompareTo(LeaderboardEntryModel _other)
+        {
+			return _other.Score.CompareTo(Score);
+		}
+    }
 }

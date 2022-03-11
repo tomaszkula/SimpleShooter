@@ -1,8 +1,17 @@
 using System;
-using System.Collections.Generic;
 
 [Serializable]
 public class TSG_SaveData
 {
-    public List<TSG_SaveableLeaderboardEntry> SaveableLeaderboardEntries = new List<TSG_SaveableLeaderboardEntry>();
+    public TSG_HighScoreData HighScore = null;
+
+    public TSG_HighScoreData GetHighScore()
+    {
+        return HighScore;
+    }
+
+    public void SetHighScore(TSG_HighScoreData _highScore)
+    {
+        HighScore = _highScore;
+    }
 }

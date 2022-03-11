@@ -3,7 +3,7 @@ using TSG.Model;
 
 public static class TSG_LeaderboardUtility
 {
-    public static LeaderboardEntryModel CreateLeaderboardEntry(TSG_SaveableLeaderboardEntry _saveableLeaderboardEntry)
+    public static LeaderboardEntryModel CreateLeaderboardEntry(TSG_HighScoreData _saveableLeaderboardEntry)
     {
         if (_saveableLeaderboardEntry == null)
         {
@@ -14,7 +14,7 @@ public static class TSG_LeaderboardUtility
         return _leaderboardEntry;
     }
 
-    public static List<LeaderboardEntryModel> CreateLeaderboardEntries(List<TSG_SaveableLeaderboardEntry> _saveableLeaderboardEntries)
+    public static List<LeaderboardEntryModel> CreateLeaderboardEntries(List<TSG_HighScoreData> _saveableLeaderboardEntries)
     {
         if (_saveableLeaderboardEntries == null)
         {
@@ -35,27 +35,27 @@ public static class TSG_LeaderboardUtility
         return _leaderboardEntries;
     }
 
-    public static TSG_SaveableLeaderboardEntry CreateSaveableLeaderboardEntry(LeaderboardEntryModel _leaderboardEntry)
+    public static TSG_HighScoreData CreateSaveableLeaderboardEntry(LeaderboardEntryModel _leaderboardEntry)
     {
         if (_leaderboardEntry == null)
         {
             return null;
         }
 
-        TSG_SaveableLeaderboardEntry _saveableLeaderboardEntry = new TSG_SaveableLeaderboardEntry();
+        TSG_HighScoreData _saveableLeaderboardEntry = new TSG_HighScoreData();
         _saveableLeaderboardEntry.Name = _leaderboardEntry.Name;
         _saveableLeaderboardEntry.Score = _leaderboardEntry.Score;
         return _saveableLeaderboardEntry;
     }
 
-    public static List<TSG_SaveableLeaderboardEntry> CreateSaveableLeaderboardEntries(List<LeaderboardEntryModel> _leaderboardEntries)
+    public static List<TSG_HighScoreData> CreateSaveableLeaderboardEntries(List<LeaderboardEntryModel> _leaderboardEntries)
     {
         if (_leaderboardEntries == null)
         {
             return null;
         }
 
-        List<TSG_SaveableLeaderboardEntry> _saveableLeaderboardEntries = new List<TSG_SaveableLeaderboardEntry>();
+        List<TSG_HighScoreData> _saveableLeaderboardEntries = new List<TSG_HighScoreData>();
         for (int i = 0; i < _leaderboardEntries.Count; i++)
         {
             if(_leaderboardEntries[i] == null)
@@ -63,7 +63,7 @@ public static class TSG_LeaderboardUtility
                 continue;
             }
 
-            TSG_SaveableLeaderboardEntry _saveableLeaderboardEntry = CreateSaveableLeaderboardEntry(_leaderboardEntries[i]);
+            TSG_HighScoreData _saveableLeaderboardEntry = CreateSaveableLeaderboardEntry(_leaderboardEntries[i]);
             _saveableLeaderboardEntries.Add(_saveableLeaderboardEntry);
         }
         return _saveableLeaderboardEntries;
