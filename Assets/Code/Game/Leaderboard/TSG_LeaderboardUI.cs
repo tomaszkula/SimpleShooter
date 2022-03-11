@@ -93,49 +93,59 @@ namespace TSG.Game
 
         private void updateFirstListItem()
         {
-            TSG_LeaderboardEntryUI _leaderboardEntryUI = leaderboardEntriesUI[0];
-            RectTransform _leaderboardEntryUITransform = _leaderboardEntryUI.transform as RectTransform;
-            float _leaderboardEntryUIHeight = _leaderboardEntryUITransform.rect.height;
-
-            Vector3 _localPosition = _leaderboardEntryUITransform.anchoredPosition3D;
-            Vector3 _worldPosition = (_leaderboardEntryUITransform.parent as RectTransform).TransformPoint(_localPosition);
-            Vector3 _localPositionToViewport = scrollRect.viewport.InverseTransformPoint(_worldPosition);
-
-            if (_localPositionToViewport.y > _leaderboardEntryUIHeight && firstItemId + leaderboardEntriesUI.Count < leaderboardModel.NumItems)
+            for (int i = 0; i < leaderboardEntriesUI.Count; i++)
             {
-                firstItemId++;
+                TSG_LeaderboardEntryUI _leaderboardEntryUI = leaderboardEntriesUI[i];
+                RectTransform _leaderboardEntryUITransform = _leaderboardEntryUI.transform as RectTransform;
+                float _leaderboardEntryUIHeight = _leaderboardEntryUITransform.rect.height;
 
-                leaderboardEntriesUI.Remove(_leaderboardEntryUI);
-                leaderboardEntriesUI.Add(_leaderboardEntryUI);
-                _leaderboardEntryUITransform.SetAsLastSibling();
+                Vector3 _localPosition = _leaderboardEntryUITransform.anchoredPosition3D;
+                Vector3 _worldPosition = (_leaderboardEntryUITransform.parent as RectTransform).TransformPoint(_localPosition);
+                Vector3 _localPositionToViewport = scrollRect.viewport.InverseTransformPoint(_worldPosition);
 
-                int _newItemId = (firstItemId + leaderboardEntriesUI.Count - 1);
-                _leaderboardEntryUITransform.anchoredPosition3D = new Vector3(0f, -_newItemId * _leaderboardEntryUIHeight, 0f);
-                _leaderboardEntryUI.Setup(_newItemId, leaderboardModel.GetItem(_newItemId));
+                if (_localPositionToViewport.y > _leaderboardEntryUIHeight && firstItemId + leaderboardEntriesUI.Count < leaderboardModel.NumItems)
+                {
+                    firstItemId++;
+
+                    leaderboardEntriesUI.Remove(_leaderboardEntryUI);
+                    leaderboardEntriesUI.Add(_leaderboardEntryUI);
+                    _leaderboardEntryUITransform.SetAsLastSibling();
+
+                    int _newItemId = (firstItemId + leaderboardEntriesUI.Count - 1);
+                    _leaderboardEntryUITransform.anchoredPosition3D = new Vector3(0f, -_newItemId * _leaderboardEntryUIHeight, 0f);
+                    _leaderboardEntryUI.Setup(_newItemId, leaderboardModel.GetItem(_newItemId));
+
+                    i--;
+                }
             }
         }
 
         private void updateLastListItem()
         {
-            TSG_LeaderboardEntryUI _leaderboardEntryUI = leaderboardEntriesUI[leaderboardEntriesUI.Count - 1];
-            RectTransform _leaderboardEntryUITransform = _leaderboardEntryUI.transform as RectTransform;
-            float _leaderboardEntryUIHeight = _leaderboardEntryUITransform.rect.height;
-
-            Vector3 _localPosition = _leaderboardEntryUITransform.anchoredPosition3D;
-            Vector3 _worldPosition = (_leaderboardEntryUITransform.parent as RectTransform).TransformPoint(_localPosition);
-            Vector3 _localPositionToViewport = scrollRect.viewport.InverseTransformPoint(_worldPosition);
-
-            if (_localPositionToViewport.y < -scrollRect.viewport.rect.height && firstItemId > 0)
+            for (int i = leaderboardEntriesUI.Count - 1; i > -1; i--)
             {
-                firstItemId--;
+                TSG_LeaderboardEntryUI _leaderboardEntryUI = leaderboardEntriesUI[i];
+                RectTransform _leaderboardEntryUITransform = _leaderboardEntryUI.transform as RectTransform;
+                float _leaderboardEntryUIHeight = _leaderboardEntryUITransform.rect.height;
 
-                leaderboardEntriesUI.Remove(_leaderboardEntryUI);
-                leaderboardEntriesUI.Insert(0, _leaderboardEntryUI);
-                _leaderboardEntryUITransform.SetAsFirstSibling();
+                Vector3 _localPosition = _leaderboardEntryUITransform.anchoredPosition3D;
+                Vector3 _worldPosition = (_leaderboardEntryUITransform.parent as RectTransform).TransformPoint(_localPosition);
+                Vector3 _localPositionToViewport = scrollRect.viewport.InverseTransformPoint(_worldPosition);
 
-                int _newItemId = firstItemId;
-                _leaderboardEntryUITransform.anchoredPosition3D = new Vector3(0f, -_newItemId * 50f, 0f);
-                _leaderboardEntryUI.Setup(_newItemId, leaderboardModel.GetItem(_newItemId));
+                if (_localPositionToViewport.y < -scrollRect.viewport.rect.height && firstItemId > 0)
+                {
+                    firstItemId--;
+
+                    leaderboardEntriesUI.Remove(_leaderboardEntryUI);
+                    leaderboardEntriesUI.Insert(0, _leaderboardEntryUI);
+                    _leaderboardEntryUITransform.SetAsFirstSibling();
+
+                    int _newItemId = firstItemId;
+                    _leaderboardEntryUITransform.anchoredPosition3D = new Vector3(0f, -_newItemId * 50f, 0f);
+                    _leaderboardEntryUI.Setup(_newItemId, leaderboardModel.GetItem(_newItemId));
+
+                    i++;
+                }
             }
         }
     }
