@@ -14,17 +14,13 @@ namespace TSG.Game
         [Header("References")]
         [SerializeField] RectTransform highscoresContainer = null;
         [SerializeField] TextMeshProUGUI scoreTMP = null;
-
-
-
-
         [SerializeField] ScrollRect scrollRect = null;
 
         List<TSG_LeaderboardEntryUI> leaderboardEntriesUI = new List<TSG_LeaderboardEntryUI>();
 
         int firstItemId = 0;
-        //int lastId = 0;
 
+        int mineLeaderboardEntryModelId = 0;
         LeaderboardModel leaderboardModel = null;
 
         private void Start()
@@ -36,8 +32,6 @@ namespace TSG.Game
                 (_xd.transform as RectTransform).pivot = highscoresContainer.pivot;
                 (_xd.transform as RectTransform).anchorMin = highscoresContainer.anchorMin;
                 (_xd.transform as RectTransform).anchorMax = highscoresContainer.anchorMax;
-                //(_xd.transform as RectTransform).anchoredPosition3D = new Vector3((_xd.transform as RectTransform).anchoredPosition3D.x, -25f - i * 50f, (_xd.transform as RectTransform).anchoredPosition3D.z);
-                //_xd.Setup(i, _leaderboardEntryModel);
                 leaderboardEntriesUI.Add(_xd);
             }
         }
@@ -55,6 +49,7 @@ namespace TSG.Game
 
         public void OnLeaderboardUpdate(TSG_GameEventData _gameEventData)
         {
+            mineLeaderboardEntryModelId = _gameEventData.IntValues[0];
             leaderboardModel = _gameEventData.ObjectValues[0] as LeaderboardModel;
             if (leaderboardModel == null)
             {
@@ -113,7 +108,7 @@ namespace TSG.Game
 
                     int _newItemId = (firstItemId + leaderboardEntriesUI.Count - 1);
                     _leaderboardEntryUITransform.anchoredPosition3D = new Vector3(0f, -_newItemId * _leaderboardEntryUIHeight, 0f);
-                    _leaderboardEntryUI.Setup(_newItemId, leaderboardModel.GetItem(_newItemId));
+                    select(_leaderboardEntryUI, _newItemId, leaderboardModel.GetItem(_newItemId), mineLeaderboardEntryModelId);
 
                     i--;
                 }
@@ -142,10 +137,23 @@ namespace TSG.Game
 
                     int _newItemId = firstItemId;
                     _leaderboardEntryUITransform.anchoredPosition3D = new Vector3(0f, -_newItemId * 50f, 0f);
-                    _leaderboardEntryUI.Setup(_newItemId, leaderboardModel.GetItem(_newItemId));
+                    select(_leaderboardEntryUI, _newItemId, leaderboardModel.GetItem(_newItemId), mineLeaderboardEntryModelId);
 
                     i++;
                 }
+            }
+        }
+
+        private void select(TSG_LeaderboardEntryUI _leaderboardEntryUI, int _id, LeaderboardEntryModel _leaderboardEntryModel, int _mineId)
+        {
+            _leaderboardEntryUI.Setup(_id, _leaderboardEntryModel);
+            if(_mineId == _id)
+            {
+                _leaderboardEntryUI.Select();
+            }
+            else
+            {
+                _leaderboardEntryUI.Deselect();
             }
         }
     }

@@ -40,6 +40,7 @@ namespace TSG.Game
 
             onLeaderboardUpdateEvent?.Invoke(new TSG_GameEventData()
             {
+                IntValues = new int[] { _leaderboardModel.IndexOf(_leaderboardEntryModel) },
                 ObjectValues = new object[] { _leaderboardModel }
             });
         }
