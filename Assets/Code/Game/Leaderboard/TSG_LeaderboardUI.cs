@@ -10,6 +10,7 @@ namespace TSG.Game
     {
         [Header("Variables")]
         [SerializeField] float itemHeight = 50f;
+        [SerializeField] int leaderboardEntriesUICount = 17;
 
         LeaderboardModel leaderboardModel = null;
         int mineLeaderboardEntryModelId = 0;
@@ -46,13 +47,12 @@ namespace TSG.Game
             }
 
             leaderboardEntriesUIContainer.sizeDelta = new Vector2(leaderboardEntriesUIContainer.sizeDelta.x, leaderboardModel.NumItems * itemHeight);
-            manageLeaderboardEntriesUICount(16 * itemHeight);
+            manageLeaderboardEntriesUICount(leaderboardEntriesUICount);
             focusOnItem(mineLeaderboardEntryModelId);
         }
 
-        private void manageLeaderboardEntriesUICount(float _height)
+        private void manageLeaderboardEntriesUICount(int _leaderboardEntriesUICount)
         {
-            int _leaderboardEntriesUICount = Mathf.CeilToInt(_height / itemHeight);
             int _missingLeaderboardEntriesUICount = _leaderboardEntriesUICount - leaderboardEntriesUI.Count;
             if (_missingLeaderboardEntriesUICount > 0)
             {

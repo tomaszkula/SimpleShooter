@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TSG_HorizontalMovementFromInputs : MonoBehaviour, TSG_IMoveable
 {
@@ -38,18 +39,28 @@ public class TSG_HorizontalMovementFromInputs : MonoBehaviour, TSG_IMoveable
 			return;
 		}
 
+		bool _didMoveLeft = false;
+		bool _didMoveRight = false;
+
 		for (int i = 0; i < Input.touchCount; i++)
 		{
 			Touch _touch = Input.GetTouch(i);
+			if(EventSystem.current.IsPointerOverGameObject(_touch.fingerId))
+            {
+				return;
+            }
+
 			Vector2 _touchPosition = _touch.position;
 			Vector2 _normalizedTouchPosition = normalizeTouchPosition(_touchPosition);
 
-			if (_normalizedTouchPosition.x < 0.3f)
+			if (_normalizedTouchPosition.x < 0.3f && _didMoveLeft == false)
 			{
+				_didMoveLeft = true;
 				moveLeft();
 			}
-			else if (_normalizedTouchPosition.x > 0.7f)
+			else if (_normalizedTouchPosition.x > 0.7f && _didMoveRight == false)
 			{
+				_didMoveLeft = false;
 				moveRight();
 			}
 		}
