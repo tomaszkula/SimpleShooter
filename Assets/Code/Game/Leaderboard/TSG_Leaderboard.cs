@@ -27,7 +27,7 @@ namespace TSG.Game
 
             if(_highScoreData.Score < score)
             {
-                _highScoreData.Name = "Player";
+                _highScoreData.Name = TSG_Nickname.Nickname;
                 _highScoreData.Score = score;
             }
             TSG_SaveSystem.SaveData.SetHighScore(_highScoreData);
@@ -45,15 +45,5 @@ namespace TSG.Game
             });
         }
         #endregion
-
-
-        //private void refreshLeaderboardEntry(int _highscoreDataId, LeaderboardEntryModel _highscoreData)
-        //{
-        //    onHighscoreDataUpdate?.Invoke(new TSG_GameEventData()
-        //    {
-        //        IntValues = new int[] { _highscoreDataId },
-        //        ObjectValues = new object[] { _highscoreData }
-        //    });
-        //}
     }
 }

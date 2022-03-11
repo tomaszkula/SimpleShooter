@@ -3,6 +3,7 @@ using UnityEngine;
 public class TSG_Score : MonoBehaviour
 {
     [Header("Variables")]
+    bool isPlayerDead = false;
     int score = 0;
 
     [Header("Events")]
@@ -13,6 +14,11 @@ public class TSG_Score : MonoBehaviour
         updateScore();
     }
 
+    public void OnPlayerDeath()
+    {
+        isPlayerDead = true;
+    }
+
     public void OnEnemyDeath()
     {
         increaseScore();
@@ -20,6 +26,11 @@ public class TSG_Score : MonoBehaviour
 
     private void increaseScore()
     {
+        if(isPlayerDead)
+        {
+            return;
+        }
+
         score++;
         updateScore();
     }

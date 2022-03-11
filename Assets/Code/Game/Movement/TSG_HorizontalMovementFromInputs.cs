@@ -60,7 +60,7 @@ public class TSG_HorizontalMovementFromInputs : MonoBehaviour, TSG_IMoveable
 			}
 			else if (_normalizedTouchPosition.x > 0.7f && _didMoveRight == false)
 			{
-				_didMoveLeft = false;
+				_didMoveRight = true;
 				moveRight();
 			}
 		}

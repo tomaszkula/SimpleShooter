@@ -31,7 +31,7 @@ namespace TSG.Game
 
         private void Start()
         {
-            Get<PopupManager>().Open<SplashPopup>().Forget();
+            Get<PopupManager>().Open<TSG_SplashPopup>().Forget();
         }
 
         private void OnDestroy()
