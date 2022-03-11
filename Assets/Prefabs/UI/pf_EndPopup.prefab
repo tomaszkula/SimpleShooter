@@ -1666,10 +1666,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529075075662da949970babbc08b4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderboardEntryUIPrefab: {fileID: 11400000, guid: 6d87fefafd4600146ade039c14242461, type: 2}
-  highscoresContainer: {fileID: 7424974043090942519}
+  itemHeight: 50
   scoreTMP: {fileID: 3462203741280366744}
+  leaderboardEntriesUIContainer: {fileID: 7424974043090942519}
   scrollRect: {fileID: 104744472337173128}
+  leaderboardEntryUIObjectsPool: {fileID: 11400000, guid: 6d87fefafd4600146ade039c14242461, type: 2}
 --- !u!114 &8168099245230453651
 MonoBehaviour:
   m_ObjectHideFlags: 0

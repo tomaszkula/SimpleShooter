@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cdccfe627e73c8348a9390e2207c01d1, type: 3}
-  m_Name: objectsPool_LeaderboardEntry
+  m_Name: objectsPool_LeaderboardEntryUI
   m_EditorClassIdentifier: 
   prefab: {fileID: 2642155535665112149, guid: 78acd1b1555e2d047977e751ee5cb533, type: 3}
   countToSpawnOnInit: 10

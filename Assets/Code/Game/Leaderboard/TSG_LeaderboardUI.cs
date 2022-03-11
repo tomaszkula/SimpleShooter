@@ -8,33 +8,22 @@ namespace TSG.Game
 
     public class TSG_LeaderboardUI : MonoBehaviour
     {
-        [Header("Data")]
-        [SerializeField] TSG_ObjectsPool leaderboardEntryUIPrefab = null;
+        [Header("Variables")]
+        [SerializeField] float itemHeight = 50f;
 
-        [Header("References")]
-        [SerializeField] RectTransform highscoresContainer = null;
-        [SerializeField] TextMeshProUGUI scoreTMP = null;
-        [SerializeField] ScrollRect scrollRect = null;
-
-        List<TSG_LeaderboardEntryUI> leaderboardEntriesUI = new List<TSG_LeaderboardEntryUI>();
-
+        LeaderboardModel leaderboardModel = null;
+        int mineLeaderboardEntryModelId = 0;
         int firstItemId = 0;
 
-        int mineLeaderboardEntryModelId = 0;
-        LeaderboardModel leaderboardModel = null;
+        [Header("References")]
+        [SerializeField] TextMeshProUGUI scoreTMP = null;
+        [SerializeField] RectTransform leaderboardEntriesUIContainer = null;
+        [SerializeField] ScrollRect scrollRect = null;
 
-        private void Start()
-        {
-            for (int i = 0; i < 20; i++)
-            {
-                TSG_LeaderboardEntryUI _xd = leaderboardEntryUIPrefab?.Get()?.GetComponent<TSG_LeaderboardEntryUI>();
-                _xd.transform.SetParent(highscoresContainer);
-                (_xd.transform as RectTransform).pivot = highscoresContainer.pivot;
-                (_xd.transform as RectTransform).anchorMin = highscoresContainer.anchorMin;
-                (_xd.transform as RectTransform).anchorMax = highscoresContainer.anchorMax;
-                leaderboardEntriesUI.Add(_xd);
-            }
-        }
+        [Header("Objects Pools")]
+        [SerializeField] TSG_ObjectsPool leaderboardEntryUIObjectsPool = null;
+
+        List<TSG_LeaderboardEntryUI> leaderboardEntriesUI = new List<TSG_LeaderboardEntryUI>();
 
         private void Update()
         {
@@ -56,23 +45,90 @@ namespace TSG.Game
                 return;
             }
 
-            int _recordsCount = leaderboardModel.NumItems;
-            for (int i = 0; i < _recordsCount && i < leaderboardEntriesUI.Count; i++)
+            leaderboardEntriesUIContainer.sizeDelta = new Vector2(leaderboardEntriesUIContainer.sizeDelta.x, leaderboardModel.NumItems * itemHeight);
+            manageLeaderboardEntriesUICount(16 * itemHeight);
+            focusOnItem(mineLeaderboardEntryModelId);
+        }
+
+        private void manageLeaderboardEntriesUICount(float _height)
+        {
+            int _leaderboardEntriesUICount = Mathf.CeilToInt(_height / itemHeight);
+            int _missingLeaderboardEntriesUICount = _leaderboardEntriesUICount - leaderboardEntriesUI.Count;
+            if (_missingLeaderboardEntriesUICount > 0)
             {
-                LeaderboardEntryModel _leaderboardEntryModel = leaderboardModel.GetItem(i);
-
-                (leaderboardEntriesUI[i].transform as RectTransform).anchoredPosition3D = new Vector3(0f, - i * 50f, 0f);
-                leaderboardEntriesUI[i].Setup(i, _leaderboardEntryModel);
+                for (int i = 0; i < _missingLeaderboardEntriesUICount; i++)
+                {
+                    createLeaderboardEntryUI();
+                }
             }
-
-            firstItemId = 0;
-
-            highscoresContainer.sizeDelta = new Vector2(highscoresContainer.sizeDelta.x, _recordsCount * 50f);
+            else
+            {
+                for (int i = _missingLeaderboardEntriesUICount; i < 0; i++)
+                {
+                    destroyLeaderboardEntryUI();
+                }
+            }
         }
 
         private void refreshScoreUI(int _score)
         {
             scoreTMP.text = $"{_score}";
+        }
+
+        private void createLeaderboardEntryUI()
+        {
+            TSG_LeaderboardEntryUI _leaderBoardEntryUI = leaderboardEntryUIObjectsPool?.Get()?.GetComponent<TSG_LeaderboardEntryUI>();
+            RectTransform _leaderBoardEntryUITransform = (_leaderBoardEntryUI.transform as RectTransform);
+
+            _leaderBoardEntryUI.transform.SetParent(leaderboardEntriesUIContainer);
+            _leaderBoardEntryUITransform.pivot = leaderboardEntriesUIContainer.pivot;
+            _leaderBoardEntryUITransform.anchorMin = leaderboardEntriesUIContainer.anchorMin;
+            _leaderBoardEntryUITransform.anchorMax = leaderboardEntriesUIContainer.anchorMax;
+            _leaderBoardEntryUITransform.sizeDelta = new Vector2(_leaderBoardEntryUITransform.sizeDelta.x, itemHeight);
+
+            leaderboardEntriesUI.Add(_leaderBoardEntryUI);
+        }
+
+        private void destroyLeaderboardEntryUI()
+        {
+            TSG_LeaderboardEntryUI _leaderBoardEntryUI = leaderboardEntriesUI[0];
+            leaderboardEntriesUI.Remove(_leaderBoardEntryUI);
+
+            leaderboardEntryUIObjectsPool.Release(_leaderBoardEntryUI.gameObject);
+        }
+
+        private void focusOnItem(int _itemId)
+        {
+            int _halfOfLeaderboardEntriesUICount = leaderboardEntriesUI.Count / 2;
+            int _firstItemId = 0;
+            if (_itemId - _halfOfLeaderboardEntriesUICount >= 0 && _itemId + _halfOfLeaderboardEntriesUICount < leaderboardModel.NumItems)
+            {
+                _firstItemId = _itemId - _halfOfLeaderboardEntriesUICount;
+            }
+            else if (_itemId - _halfOfLeaderboardEntriesUICount < 0)
+            {
+                _firstItemId = 0;
+            }
+            else
+            {
+                _firstItemId = leaderboardModel.NumItems - 1 - leaderboardEntriesUI.Count;
+            }
+
+            firstItemId = _firstItemId;
+
+            for (int i = 0; i < leaderboardModel.NumItems && i < leaderboardEntriesUI.Count; i++)
+            {
+                TSG_LeaderboardEntryUI _leaderboardEntryUI = leaderboardEntriesUI[i];
+                RectTransform _leaderboardEntryUITransform = _leaderboardEntryUI.transform as RectTransform;
+
+                _leaderboardEntryUITransform.anchoredPosition3D = new Vector3(0f, -(firstItemId + i) * 50f, 0f);
+
+                select(_leaderboardEntryUI, _firstItemId + i, leaderboardModel.GetItem(_firstItemId + i), mineLeaderboardEntryModelId);
+            }
+
+            float _verticalScrollbarValue = 1f - (_firstItemId / (float)(leaderboardModel.NumItems - 1 - leaderboardEntriesUI.Count));
+            _verticalScrollbarValue = Mathf.Clamp(_verticalScrollbarValue, Mathf.Epsilon, 1f - Mathf.Epsilon); // little hax for this buggy shit during setting vertical scrollbar value
+            scrollRect.verticalScrollbar.value = _verticalScrollbarValue;
         }
 
         private void updateItemsList()
